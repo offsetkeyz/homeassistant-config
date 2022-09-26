@@ -1,0 +1,709 @@
+- id: '1658239872074'
+  alias: Camera Motion Detected
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: 3e8f9b36ef0e4eb37742d812b1ed2167
+    entity_id: binary_sensor.front_view_motion
+    domain: binary_sensor
+    id: front_motion
+    enabled: true
+  - type: motion
+    platform: device
+    device_id: d577be6d002b36c0c1224db881b0da0c
+    entity_id: binary_sensor.front_door_motion
+    domain: binary_sensor
+    id: front_door_motion
+  - type: motion
+    platform: device
+    device_id: 446b8884d2c213449cee015c45b59395
+    entity_id: binary_sensor.backyard_motion
+    domain: binary_sensor
+    id: backyard_motion
+  - type: motion
+    platform: device
+    device_id: 4d52a260960a5bd5d43901d86f850213
+    entity_id: binary_sensor.garage_wifi_motion
+    domain: binary_sensor
+    id: garage_motion
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: front_motion
+      sequence:
+      - service: camera.snapshot
+        data:
+          filename: /config/www/front_view_image.jpg
+        target:
+          entity_id: camera.front_view_high
+      - service: notify.notify
+        data:
+          message: Front Motion Detected
+          title: Front Motion
+          data:
+            image: /local/front_view_image.jpg
+            actions:
+            - action: URI
+              title: View Cameras
+              uri: /front-camera-view/
+            clickAction:
+            - action: URI
+              title: View Cameras
+              uri: /front-camera-view/
+        enabled: false
+      - service: input_boolean.turn_on
+        data: {}
+        target:
+          entity_id: input_boolean.lights_bright
+    - conditions:
+      - condition: trigger
+        id: front_door_motion
+      sequence:
+      - service: camera.snapshot
+        data:
+          filename: /config/www/front_door_image.jpg
+        target:
+          entity_id: camera.front_door_high
+      - service: notify.notify
+        data:
+          message: Front Door Motion Detected
+          title: Front Door Motion
+          data:
+            image: /local/front_door_image.jpg
+            clickAction:
+            - action: URI
+              uri: /front-camera-view/
+    - conditions:
+      - condition: trigger
+        id: backyard_motion
+      - condition: state
+        entity_id: input_boolean.back_motion_alerts
+        state: 'on'
+      sequence:
+      - service: camera.snapshot
+        data:
+          filename: /config/www/backyard_image.jpg
+        target:
+          entity_id: camera.backyard_high
+      - service: notify.notify
+        data:
+          message: Backyard Motion Detected
+          title: Backyard Motion
+          data:
+            image: /local/backyard_image.jpg
+            actions:
+            - action: URI
+              title: View Cameras
+              uri: /front-camera-view/
+            clickAction:
+            - action: URI
+              title: View Cameras
+              uri: /front-camera-view/
+      - service: input_boolean.turn_off
+        data: {}
+        target:
+          entity_id: input_boolean.back_motion_alerts
+      - service: input_boolean.turn_on
+        data: {}
+        target:
+          entity_id: input_boolean.lights_bright
+    - conditions:
+      - condition: trigger
+        id: garage_motion
+      - condition: state
+        entity_id: input_boolean.garage_motion_alerts
+        state: 'on'
+      sequence:
+      - service: camera.snapshot
+        data:
+          filename: /config/www/garage_image.jpg
+        target:
+          entity_id: camera.garage_wifi_high
+      - service: notify.notify
+        data:
+          message: Motion detected in the garage.
+          title: Garage Motion
+          data:
+            image: /local/garage_image.jpg
+            actions:
+            - action: URI
+              title: View Cameras
+              uri: /front-camera-view/
+            clickAction:
+            - action: URI
+              title: View Cameras
+              uri: /front-camera-view/
+      - service: input_boolean.turn_off
+        data: {}
+        target:
+          entity_id: input_boolean.garage_motion_alerts
+    default: []
+  mode: single
+- id: '1658282434098'
+  alias: Garage Door Check
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: '00'
+    hours: '*'
+    seconds: '0'
+  - platform: time_pattern
+    minutes: '30'
+    hours: '*'
+    seconds: '0'
+  condition:
+  - condition: device
+    device_id: e0c902fe90a3bbb380e43c7151db3986
+    domain: cover
+    entity_id: cover.garage_door
+    type: is_open
+  action:
+  - if:
+    - condition: time
+      before: input_datetime.time_disarm_system
+      after: input_datetime.arm_system_time
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+      - sat
+      - sun
+    then:
+    - device_id: e0c902fe90a3bbb380e43c7151db3986
+      domain: cover
+      entity_id: cover.garage_door
+      type: close
+    else:
+    - service: notify.notify
+      data:
+        message: The garage door is open. Do you want to close it?
+        title: Garage Door Open
+        data:
+          actions:
+          - action: CLOSE_GARAGE
+            title: Close
+    - wait_for_trigger:
+      - platform: event
+        event_type: mobile_app_notification_action
+        event_data:
+          action: CLOSE_GARAGE
+      timeout: 00:05:00
+      continue_on_timeout: false
+    - device_id: e0c902fe90a3bbb380e43c7151db3986
+      domain: cover
+      entity_id: cover.garage_door
+      type: close
+  mode: single
+- id: '1658326303235'
+  alias: Sunset Lights
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: -00:30:00
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.front_lights_dim
+    metadata: {}
+  - service: scene.turn_on
+    target:
+      entity_id: scene.all_internal_lights_on
+    metadata: {}
+  mode: single
+- id: '1658338168827'
+  alias: Colin Arrives Home
+  description: ''
+  trigger:
+  - platform: device
+    device_id: c28f1d78a9165faa1a941cd18539ab11
+    domain: device_tracker
+    entity_id: device_tracker.iphone_2
+    type: enters
+    zone: zone.home
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 4a71ad6c414d69cc0dae0e8824df8c43
+    entity_id: switch.garage_fairy_lights_socket_1
+    domain: switch
+  - if:
+    - condition: time
+      after: input_datetime.time_disarm_system
+      before: input_datetime.arm_system_time
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+      - sat
+      - sun
+    then:
+    - service: input_boolean.turn_off
+      data: {}
+      target:
+        entity_id: input_boolean.system_armed
+    - device_id: e0c902fe90a3bbb380e43c7151db3986
+      domain: cover
+      entity_id: cover.garage_door
+      type: open
+    else:
+    - service: alarm_control_panel.alarm_disarm
+      data: {}
+      target:
+        entity_id: alarm_control_panel.alexa_guard_703b0
+  mode: single
+- id: '1658342295206'
+  alias: Back Motion Alerts Delay
+  description: When Back Motion Alerts is turned off, it will wait 5 minutes and be
+    turned back on again.
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.back_motion_alerts
+    from: 'on'
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 10
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.back_motion_alerts
+  mode: single
+- id: '1658343318484'
+  alias: Colin Leaves Home
+  description: ''
+  trigger:
+  - platform: device
+    device_id: c28f1d78a9165faa1a941cd18539ab11
+    domain: device_tracker
+    entity_id: device_tracker.iphone_2
+    type: leaves
+    zone: zone.home
+  condition: []
+  action:
+  - device_id: e0c902fe90a3bbb380e43c7151db3986
+    domain: cover
+    entity_id: cover.garage_door
+    type: close
+    enabled: false
+  - type: turn_off
+    device_id: 4a71ad6c414d69cc0dae0e8824df8c43
+    entity_id: switch.garage_fairy_lights_socket_1
+    domain: switch
+    enabled: false
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.system_armed
+  - if:
+    - condition: state
+      entity_id: input_boolean.other_people_home
+      state: 'off'
+    then:
+    - type: turn_off
+      device_id: 4a71ad6c414d69cc0dae0e8824df8c43
+      entity_id: switch.garage_fairy_lights_socket_1
+      domain: switch
+    - device_id: e0c902fe90a3bbb380e43c7151db3986
+      domain: cover
+      entity_id: cover.garage_door
+      type: close
+  mode: single
+- id: '1658371596779'
+  alias: Bright Lights On
+  description: When Back Motion Alerts is turned off, it will wait 5 minutes and be
+    turned back on again.
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.lights_bright
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+  condition: []
+  action:
+  - if:
+    - condition: sun
+      after: sunset
+    then:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.front_lights_bright
+      metadata: {}
+    - delay:
+        hours: 0
+        minutes: 5
+        seconds: 0
+        milliseconds: 0
+    - service: scene.turn_on
+      target:
+        entity_id: scene.front_lights_dim
+      metadata: {}
+    else:
+    - service: input_boolean.turn_off
+      data: {}
+      target:
+        entity_id: input_boolean.lights_bright
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.lights_bright
+  mode: single
+- id: '1658413603324'
+  alias: Sunrise Lights Off
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunrise
+    offset: 0
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 32b6e61aff218afee747c654e1d4b99b
+    entity_id: light.front_right_light
+    domain: light
+  - type: turn_off
+    device_id: 9ad60f7c8cd9d0636d809c60fe362dd0
+    entity_id: light.front_left_light
+    domain: light
+  - type: turn_off
+    device_id: f83a89b933facc8ce0d1209dd0ed5772
+    entity_id: light.back_porch
+    domain: light
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.lights_bright
+  mode: single
+- id: '1658436887877'
+  alias: Garage Motion Alerts Delay
+  description: When Garage Motion Alerts are turned off, it will wait 15 minutes and
+    be turned back on again.
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.garage_motion_alerts
+    from: 'on'
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.garage_motion_alerts
+  mode: single
+- id: '1658441402155'
+  alias: Time Arm System
+  description: ''
+  trigger:
+  - platform: time
+    at: '23:00:00'
+    id: turn_on
+  - platform: time
+    at: 06:00:00
+    id: turn_off
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: turn_on
+      sequence:
+      - service: input_boolean.turn_on
+        data: {}
+        target:
+          entity_id: input_boolean.system_armed
+    - conditions:
+      - condition: trigger
+        id: turn_off
+      - condition: device
+        device_id: c28f1d78a9165faa1a941cd18539ab11
+        domain: device_tracker
+        entity_id: device_tracker.colins_iphone
+        type: is_home
+      sequence:
+      - service: input_boolean.turn_off
+        data: {}
+        target:
+          entity_id: input_boolean.system_armed
+    default: []
+  mode: single
+- id: '1658441651432'
+  alias: System Armed Change Notification
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.system_armed
+    from: 'on'
+    to: 'off'
+    id: turned_off
+  - platform: state
+    entity_id:
+    - input_boolean.system_armed
+    from: 'off'
+    to: 'on'
+    id: turned_on
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: turned_off
+      sequence:
+      - service: alarm_control_panel.alarm_disarm
+        data: {}
+        target:
+          entity_id: alarm_control_panel.alexa_guard_703b0
+      - service: notify.notify
+        data:
+          message: System is no longer armed.
+          title: System Unarmed
+    - conditions:
+      - condition: trigger
+        id: turned_on
+      sequence:
+      - delay:
+          hours: 0
+          minutes: 5
+          seconds: 0
+          milliseconds: 0
+      - if:
+        - condition: device
+          device_id: c28f1d78a9165faa1a941cd18539ab11
+          domain: device_tracker
+          entity_id: device_tracker.colins_iphone
+          type: is_not_home
+        then:
+        - service: alarm_control_panel.alarm_arm_away
+          data: {}
+          target:
+            entity_id: alarm_control_panel.alexa_guard_703b0
+        - service: notify.notify
+          data:
+            message: System and Alexa have been armed.
+            title: ~ System Armed ~
+        else:
+        - service: notify.notify
+          data:
+            message: System has been armed. Alexa remains disabled.
+            title: ~ System Armed ~ (no Alexa)
+    default: []
+  mode: single
+- id: '1658509213889'
+  alias: Garage Door Closed/Opened
+  description: ''
+  trigger:
+  - platform: device
+    device_id: e0c902fe90a3bbb380e43c7151db3986
+    domain: cover
+    entity_id: cover.garage_door
+    type: opened
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+    id: opened
+  - platform: device
+    device_id: e0c902fe90a3bbb380e43c7151db3986
+    domain: cover
+    entity_id: cover.garage_door
+    type: closed
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+    id: closed
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: opened
+      sequence:
+      - service: notify.notify
+        data:
+          message: Garage Dor Opened
+    - conditions:
+      - condition: trigger
+        id: closed
+      sequence:
+      - service: notify.notify
+        data:
+          message: Garage Door Closed
+    default: []
+  mode: single
+- id: '1659817361908'
+  alias: SECURITY ALERTS!!!
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: 1de4d5ea92974de625cbd4669f3cc7a2
+    entity_id: binary_sensor.z_wave_door_window_sensor_access_control_window_door_is_open
+    domain: binary_sensor
+    id: Front
+  - type: opened
+    platform: device
+    device_id: 16df215fae961513c220632cc2628f09
+    entity_id: binary_sensor.sliding_back_door_access_control_window_door_is_open_2
+    domain: binary_sensor
+    id: Sliding
+  - type: opened
+    platform: device
+    device_id: 5c6f85c0c51c0f9cd3654d75e8abce4a
+    entity_id: binary_sensor.door_to_garage_access_control_window_door_is_open_3
+    domain: binary_sensor
+    id: Garage
+  condition:
+  - condition: state
+    entity_id: input_boolean.system_armed
+    state: 'on'
+    enabled: false
+  action:
+  - service: notify.mobile_app_colins_iphone
+    data:
+      title: SECURITY ALERT
+      message: 'Door opened '
+    enabled: false
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 15
+      milliseconds: 0
+  - if:
+    - condition: state
+      entity_id: input_boolean.system_armed
+      state: 'on'
+    then:
+    - service: notify.notify
+      data:
+        title: SECURITY ALERT!!
+        message: Door opened while alarm armed
+        data:
+          push:
+            sound:
+              critical: 1
+              name: default
+              volume: 1
+  mode: single
+- id: '1660678140757'
+  alias: Door Opened
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: 1de4d5ea92974de625cbd4669f3cc7a2
+    entity_id: binary_sensor.z_wave_door_window_sensor_access_control_window_door_is_open
+    domain: binary_sensor
+    id: front_door
+  - type: opened
+    platform: device
+    device_id: 16df215fae961513c220632cc2628f09
+    entity_id: binary_sensor.sliding_back_door_access_control_window_door_is_open_2
+    domain: binary_sensor
+    id: sliding_door
+  - type: opened
+    platform: device
+    device_id: 5c6f85c0c51c0f9cd3654d75e8abce4a
+    entity_id: binary_sensor.door_to_garage_access_control_window_door_is_open_3
+    domain: binary_sensor
+    id: garage
+  condition:
+  - condition: state
+    entity_id: input_boolean.system_armed
+    state: 'off'
+    enabled: false
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: front_door
+      sequence:
+      - service: notify.alexa_media
+        data:
+          target: media_player.black_dot_2, media_player.white_dot_2
+          message: front door
+          data:
+            type: tts
+    - conditions:
+      - condition: trigger
+        id: sliding_door
+      sequence:
+      - service: notify.alexa_media
+        data:
+          target: media_player.black_dot_2, media_player.white_dot_2
+          data:
+            type: tts
+          message: Ally is a goddess.
+    - conditions:
+      - condition: trigger
+        id: garage
+      sequence:
+      - service: notify.alexa_media
+        data:
+          target: media_player.black_dot_2, media_player.white_dot_2
+          message: garage door
+          data:
+            type: tts
+    default: []
+  mode: single
+- id: '1664038116340'
+  alias: Garage Fairy Lights On/Off
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_on
+    device_id: 4a71ad6c414d69cc0dae0e8824df8c43
+    entity_id: switch.garage_fairy_lights_socket_1
+    domain: switch
+    for:
+      hours: 0
+      minutes: 30
+      seconds: 0
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 4a71ad6c414d69cc0dae0e8824df8c43
+    entity_id: switch.garage_fairy_lights_socket_1
+    domain: switch
+  mode: single
+- id: '1664045965384'
+  alias: Turn on Garage Fairy Lights
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: 8cdd1bc1681b475d04bf83153ead5760
+    entity_id: binary_sensor.lumi_lumi_motion_ac02_da414e00_ias_zone
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 4a71ad6c414d69cc0dae0e8824df8c43
+    entity_id: switch.garage_fairy_lights_socket_1
+    domain: switch
+  mode: single
