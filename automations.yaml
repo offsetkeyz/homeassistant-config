@@ -76,6 +76,17 @@
             clickAction:
             - action: URI
               uri: /front-camera-view/
+        enabled: false
+      - device_id: c28f1d78a9165faa1a941cd18539ab11
+        domain: mobile_app
+        type: notify
+        message: Front Door Motion Detected
+        title: Front Door Motion
+        data:
+          image: /local/front_door_image.jpg
+          clickAction:
+          - action: URI
+            uri: /front-camera-view/
     - conditions:
       - condition: trigger
         id: backyard_motion
@@ -102,6 +113,7 @@
             - action: URI
               title: View Cameras
               uri: /front-camera-view/
+        enabled: false
       - service: input_boolean.turn_off
         data: {}
         target:
@@ -110,6 +122,21 @@
         data: {}
         target:
           entity_id: input_boolean.lights_bright
+      - device_id: c28f1d78a9165faa1a941cd18539ab11
+        domain: mobile_app
+        type: notify
+        message: Front Door Motion Detected
+        title: Front Door Motion
+        data:
+          image: /local/backyard_image.jpg
+          actions:
+          - action: URI
+            title: View Cameras
+            uri: /front-camera-view/
+          clickAction:
+          - action: URI
+            title: View Cameras
+            uri: /front-camera-view/
     - conditions:
       - condition: trigger
         id: garage_motion
@@ -178,6 +205,7 @@
       domain: cover
       entity_id: cover.garage_door
       type: close
+      enabled: false
     else:
     - service: notify.notify
       data:
@@ -224,7 +252,7 @@
   - platform: device
     device_id: c28f1d78a9165faa1a941cd18539ab11
     domain: device_tracker
-    entity_id: device_tracker.iphone_2
+    entity_id: device_tracker.colins_iphone_2
     type: enters
     zone: zone.home
   condition: []
@@ -288,7 +316,7 @@
   - platform: device
     device_id: c28f1d78a9165faa1a941cd18539ab11
     domain: device_tracker
-    entity_id: device_tracker.iphone_2
+    entity_id: device_tracker.colins_iphone_2
     type: leaves
     zone: zone.home
   condition: []
@@ -491,7 +519,7 @@
         - condition: device
           device_id: c28f1d78a9165faa1a941cd18539ab11
           domain: device_tracker
-          entity_id: device_tracker.colins_iphone
+          entity_id: device_tracker.iphone_2
           type: is_not_home
         then:
         - service: alarm_control_panel.alarm_arm_away
@@ -507,6 +535,10 @@
           data:
             message: System has been armed. Alexa remains disabled.
             title: ~ System Armed ~ (no Alexa)
+      - service: input_boolean.turn_on
+        data: {}
+        target:
+          entity_id: input_boolean.garage_motion_alerts
     default: []
   mode: single
 - id: '1658509213889'
@@ -520,8 +552,8 @@
     type: opened
     for:
       hours: 0
-      minutes: 5
-      seconds: 0
+      minutes: 0
+      seconds: 5
     id: opened
   - platform: device
     device_id: e0c902fe90a3bbb380e43c7151db3986
@@ -533,6 +565,7 @@
       minutes: 0
       seconds: 30
     id: closed
+    enabled: false
   condition: []
   action:
   - choose:
@@ -654,7 +687,9 @@
           target: media_player.black_dot_2, media_player.white_dot_2
           data:
             type: tts
-          message: Ally is a goddess.
+          message: "{{ ('Where are you going?', 'sliding door',\n    'I miss alley.',
+            'hate to see you go, but I love watching you leave', 'big booty big booty'\n
+            \  )|random }}\n"
     - conditions:
       - condition: trigger
         id: garage
