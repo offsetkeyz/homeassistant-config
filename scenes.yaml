@@ -1,159 +1,159 @@
-- id: '1658160253461'
+- id: "1658160253461"
   name: Front Lights Dim
   entities:
     light.front_left_light:
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-      - brightness
-      - color_temp
-      - hs
+        - brightness
+        - color_temp
+        - hs
       color_mode: hs
       brightness: 204
       hs_color:
-      - 45.125
-      - 100
+        - 45.125
+        - 100
       rgb_color:
-      - 255
-      - 191
-      - 0
+        - 255
+        - 191
+        - 0
       xy_color:
-      - 0.527
-      - 0.447
+        - 0.527
+        - 0.447
       friendly_name: Front left light
       supported_features: 0
-      state: 'on'
+      state: "on"
     light.front_right_light:
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-      - brightness
-      - color_temp
-      - hs
+        - brightness
+        - color_temp
+        - hs
       color_mode: hs
       brightness: 204
       hs_color:
-      - 45.125
-      - 100
+        - 45.125
+        - 100
       rgb_color:
-      - 255
-      - 191
-      - 0
+        - 255
+        - 191
+        - 0
       xy_color:
-      - 0.527
-      - 0.447
+        - 0.527
+        - 0.447
       friendly_name: Front right light
       supported_features: 0
-      state: 'on'
+      state: "on"
     light.back_porch:
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-      - brightness
-      - color_temp
-      - hs
+        - brightness
+        - color_temp
+        - hs
       color_mode: hs
       brightness: 181
       hs_color:
-      - 45.125
-      - 100
+        - 45.125
+        - 100
       rgb_color:
-      - 255
-      - 191
-      - 0
+        - 255
+        - 191
+        - 0
       xy_color:
-      - 0.527
-      - 0.447
+        - 0.527
+        - 0.447
       friendly_name: Back porch
       supported_features: 0
-      state: 'on'
+      state: "on"
   icon: mdi:lightbulb-on-30
   metadata: {}
-- id: '1658160355370'
+- id: "1658160355370"
   name: Front Lights Bright
   entities:
     light.front_left_light:
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-      - brightness
-      - color_temp
-      - hs
+        - brightness
+        - color_temp
+        - hs
       friendly_name: Front left light
       supported_features: 0
       color_mode: hs
       brightness: 255
       hs_color:
-      - 150.418
-      - 0
+        - 150.418
+        - 0
       rgb_color:
-      - 255
-      - 255
-      - 255
+        - 255
+        - 255
+        - 255
       xy_color:
-      - 0.323
-      - 0.329
-      state: 'on'
+        - 0.323
+        - 0.329
+      state: "on"
     light.front_right_light:
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-      - brightness
-      - color_temp
-      - hs
+        - brightness
+        - color_temp
+        - hs
       friendly_name: Front right light
       supported_features: 0
       color_mode: hs
       brightness: 255
       hs_color:
-      - 15.042
-      - 0
+        - 15.042
+        - 0
       rgb_color:
-      - 255
-      - 255
-      - 255
+        - 255
+        - 255
+        - 255
       xy_color:
-      - 0.323
-      - 0.329
-      state: 'on'
+        - 0.323
+        - 0.329
+      state: "on"
     light.back_porch:
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-      - brightness
-      - color_temp
-      - hs
+        - brightness
+        - color_temp
+        - hs
       friendly_name: Back porch
       supported_features: 0
       color_mode: hs
       brightness: 255
       hs_color:
-      - 269.749
-      - 0
+        - 269.749
+        - 0
       rgb_color:
-      - 255
-      - 255
-      - 255
+        - 255
+        - 255
+        - 255
       xy_color:
-      - 0.323
-      - 0.329
-      state: 'on'
+        - 0.323
+        - 0.329
+      state: "on"
   icon: mdi:lightbulb-on-90
   metadata: {}
-- id: '1658414094003'
+- id: "1658414094003"
   name: All Internal Lights On
   entities:
     light.kitchen:
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-      - color_temp
-      - xy
+        - color_temp
+        - xy
       is_hue_group: true
       hue_scenes: []
       hue_type: room
       lights:
-      - Hue lightstrip plus 1
+        - Hue lightstrip plus 1
       dynamics: false
       icon: mdi:lightbulb-group
       friendly_name: Kitchen
@@ -162,22 +162,22 @@
       brightness: 255
       color_temp: 375
       hs_color:
-      - 28.47
-      - 66.821
+        - 28.47
+        - 66.821
       rgb_color:
-      - 255
-      - 165
-      - 84
+        - 255
+        - 165
+        - 84
       xy_color:
-      - 0.53
-      - 0.388
-      state: 'on'
+        - 0.53
+        - 0.388
+      state: "on"
     light.left_of_bed:
       effect_list:
-      - None
-      - candle
+        - None
+        - candle
       supported_color_modes:
-      - brightness
+        - brightness
       mode: normal
       dynamics: none
       friendly_name: Left of bed
@@ -185,13 +185,13 @@
       color_mode: brightness
       brightness: 255
       effect: None
-      state: 'on'
+      state: "on"
     light.right_of_bed:
       effect_list:
-      - None
-      - candle
+        - None
+        - candle
       supported_color_modes:
-      - brightness
+        - brightness
       mode: normal
       dynamics: none
       friendly_name: Right of bed
@@ -199,17 +199,17 @@
       color_mode: brightness
       brightness: 255
       effect: None
-      state: 'on'
+      state: "on"
     switch.salt_lamp_socket_1:
       device_class: outlet
       friendly_name: Salt Lamp Socket 1
-      state: 'on'
+      state: "on"
     light.tripod_lamp:
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-      - color_temp
-      - xy
+        - color_temp
+        - xy
       mode: normal
       dynamics: none
       friendly_name: Tripod lamp
@@ -218,22 +218,22 @@
       brightness: 255
       color_temp: 375
       hs_color:
-      - 28.47
-      - 66.821
+        - 28.47
+        - 66.821
       rgb_color:
-      - 255
-      - 165
-      - 84
+        - 255
+        - 165
+        - 84
       xy_color:
-      - 0.53
-      - 0.388
-      state: 'on'
+        - 0.53
+        - 0.388
+      state: "on"
     light.square_lamp:
       effect_list:
-      - None
-      - candle
+        - None
+        - candle
       supported_color_modes:
-      - brightness
+        - brightness
       mode: normal
       dynamics: none
       friendly_name: Square lamp
@@ -241,134 +241,134 @@
       color_mode: brightness
       brightness: 255
       effect: None
-      state: 'on'
+      state: "on"
   icon: mdi:sun-angle
   metadata: {}
-- id: '1658839426542'
+- id: "1658839426542"
   name: Daytime Raining Lights
   entities:
     light.front_left_light:
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-      - brightness
-      - color_temp
-      - hs
+        - brightness
+        - color_temp
+        - hs
       friendly_name: Front left light
       supported_features: 0
       color_mode: hs
       brightness: 204
       hs_color:
-      - 194.54
-      - 100
+        - 194.54
+        - 100
       rgb_color:
-      - 0
-      - 193
-      - 255
+        - 0
+        - 193
+        - 255
       xy_color:
-      - 0.146
-      - 0.242
-      state: 'on'
+        - 0.146
+        - 0.242
+      state: "on"
     light.front_right_light:
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-      - brightness
-      - color_temp
-      - hs
+        - brightness
+        - color_temp
+        - hs
       friendly_name: Front right light
       supported_features: 0
       color_mode: hs
       brightness: 255
       hs_color:
-      - 194.54
-      - 100
+        - 194.54
+        - 100
       rgb_color:
-      - 0
-      - 193
-      - 255
+        - 0
+        - 193
+        - 255
       xy_color:
-      - 0.146
-      - 0.242
-      state: 'on'
+        - 0.146
+        - 0.242
+      state: "on"
     light.back_porch:
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-      - brightness
-      - color_temp
-      - hs
+        - brightness
+        - color_temp
+        - hs
       friendly_name: Back porch
       supported_features: 0
       color_mode: hs
       brightness: 255
       hs_color:
-      - 194.54
-      - 100
+        - 194.54
+        - 100
       rgb_color:
-      - 0
-      - 193
-      - 255
+        - 0
+        - 193
+        - 255
       xy_color:
-      - 0.146
-      - 0.242
-      state: 'on'
+        - 0.146
+        - 0.242
+      state: "on"
     light.hanging_bulb:
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-      - brightness
-      - color_temp
-      - hs
+        - brightness
+        - color_temp
+        - hs
       friendly_name: Hanging Bulb
       supported_features: 0
       color_mode: hs
       brightness: 255
       hs_color:
-      - 194.54
-      - 85.827
+        - 194.54
+        - 85.827
       rgb_color:
-      - 36
-      - 201
-      - 255
+        - 36
+        - 201
+        - 255
       xy_color:
-      - 0.152
-      - 0.255
-      state: 'on'
+        - 0.152
+        - 0.255
+      state: "on"
     light.kitchen:
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-      - color_temp
-      - xy
+        - color_temp
+        - xy
       color_mode: xy
       brightness: 255
       hs_color:
-      - 195.31
-      - 56.863
+        - 195.31
+        - 56.863
       rgb_color:
-      - 110
-      - 218
-      - 255
+        - 110
+        - 218
+        - 255
       xy_color:
-      - 0.189
-      - 0.284
+        - 0.189
+        - 0.284
       is_hue_group: true
       hue_scenes: []
       hue_type: room
       lights:
-      - Hue lightstrip plus 1
+        - Hue lightstrip plus 1
       dynamics: false
       icon: mdi:lightbulb-group
       friendly_name: Kitchen
       supported_features: 40
-      state: 'on'
+      state: "on"
     light.tripod_lamp:
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-      - color_temp
-      - xy
+        - color_temp
+        - xy
       mode: normal
       dynamics: none
       friendly_name: Tripod lamp
@@ -376,15 +376,15 @@
       color_mode: xy
       brightness: 255
       hs_color:
-      - 210.275
-      - 42.745
+        - 210.275
+        - 42.745
       rgb_color:
-      - 146
-      - 200
-      - 255
+        - 146
+        - 200
+        - 255
       xy_color:
-      - 0.222
-      - 0.259
-      state: 'on'
+        - 0.222
+        - 0.259
+      state: "on"
   icon: mdi:ceiling-light
   metadata: {}
