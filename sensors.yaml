@@ -1,12 +1,16 @@
-- platform: template
-  sensors:
-    sensor name:
-      friendly_name: "sensor friendly name"
-      value_template: "{{ sensor value template }}"
-
 - platform: miflora
   mac:
   name: pothos
+  force_update: true
+  scan_interval: 08:00
+  median: 3
+  go_unavailable_timeout: 43200
+  monitored_conditions:
+    - battery
+
+- platform: miflora
+  mac:
+  name: caladium
   force_update: true
   scan_interval: 08:00
   median: 3
