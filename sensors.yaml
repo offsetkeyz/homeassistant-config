@@ -29,7 +29,7 @@
     - "beat"
 
 - platform: rest
-  resource: https://api.ipgeolocation.io/astronomy?lat=38.197930&long=-84.839240&apiKey=d03d01013a9b4423aee9509d84c182ad
+  resource: !secret geo_key
   name: ip_geo_location
   scan_interval: 300
   value_template: "OK"
