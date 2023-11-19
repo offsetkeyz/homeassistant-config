@@ -4,30 +4,33 @@
   trigger:
   - type: motion
     platform: device
-    device_id: 3e8f9b36ef0e4eb37742d812b1ed2167
-    entity_id: binary_sensor.front_view_motion
+    device_id: 1a6aa5c155452dc9f5e071db0e6008a5
+    entity_id: binary_sensor.front_of_house_camera_g4_bullet_motion
     domain: binary_sensor
     id: front_motion
-    enabled: true
   - type: motion
     platform: device
     device_id: d577be6d002b36c0c1224db881b0da0c
-    entity_id: binary_sensor.front_door_motion
+    entity_id: binary_sensor.front_door_camera_motion
     domain: binary_sensor
     id: front_door_motion
   - type: motion
     platform: device
     device_id: 446b8884d2c213449cee015c45b59395
-    entity_id: binary_sensor.backyard_motion
+    entity_id: binary_sensor.backyard_camera_motion
     domain: binary_sensor
     id: backyard_motion
   - type: motion
     platform: device
-    device_id: 4d52a260960a5bd5d43901d86f850213
-    entity_id: binary_sensor.garage_wifi_motion
+    device_id: 3e8f9b36ef0e4eb37742d812b1ed2167
+    entity_id: binary_sensor.garage_camera_flex_motion
     domain: binary_sensor
     id: garage_motion
-  condition: []
+  condition:
+  - condition: state
+    entity_id: input_boolean.other_people_home
+    state: 'off'
+    enabled: true
   action:
   - choose:
     - conditions:
@@ -36,10 +39,17 @@
       sequence:
       - service: camera.snapshot
         data:
-          filename: /config/www/front_view_image.jpg
+          filename: /config/www/media/front_view/front_view_image.jpg
         target:
-          entity_id: camera.front_view_high
-      - service: notify.notify
+          entity_id: camera.front_of_house_camera_g4_bullet_high
+      - service: camera.snapshot
+        data:
+          filename: /config/www/media/front_view/archive/front_view_image{{ now().strftime("%Y%m%d-%H%M%S")
+            }}.jpg
+        target:
+          entity_id: camera.front_of_house_camera_g4_bullet_high
+        enabled: false
+      - service: notify.mobile_app_colins_iphone
         data:
           message: Front Motion Detected
           title: Front Motion
@@ -53,6 +63,7 @@
             - action: URI
               title: View Cameras
               uri: /front-camera-view/
+            group: motion
         enabled: false
       - service: input_boolean.turn_on
         data: {}
@@ -64,56 +75,54 @@
       sequence:
       - service: camera.snapshot
         data:
-          filename: /config/www/front_door_image.jpg
+          filename: /config/www/media/front_door/front_door_image.jpg
         target:
-          entity_id: camera.front_door_high
-      - service: notify.notify
+          entity_id: camera.front_door_camera_high
+      - service: notify.mobile_app_colins_iphone
         data:
           message: Front Door Motion Detected
           title: Front Door Motion
           data:
-            image: /local/front_door_image.jpg
-            clickAction:
+            image: /local/media/front_door/front_door_image.jpg
+            click_action: /main-dashboard/recent-camera-shots/
+            actions:
             - action: URI
-              uri: /front-camera-view/
-        enabled: false
-      - device_id: c28f1d78a9165faa1a941cd18539ab11
-        domain: mobile_app
-        type: notify
-        message: Front Door Motion Detected
-        title: Front Door Motion
-        data:
-          image: /local/front_door_image.jpg
-          clickAction:
-          - action: URI
-            uri: /front-camera-view/
+              title: Open Cameras
+              uri: /alarm-system/cameras
+            group: motion
+        enabled: true
     - conditions:
       - condition: trigger
         id: backyard_motion
       - condition: state
         entity_id: input_boolean.back_motion_alerts
         state: 'on'
+        enabled: false
       sequence:
       - service: camera.snapshot
         data:
-          filename: /config/www/backyard_image.jpg
+          filename: /config/www/media/backyard/backyard_image.jpg
         target:
-          entity_id: camera.backyard_high
-      - service: notify.notify
+          entity_id: camera.backyard_camera_high
+      - service: camera.snapshot
+        data:
+          filename: /config/www/media/backyard/archive/backyard_image{{ now().strftime("%Y%m%d-%H%M%S")
+            }}.jpg
+        target:
+          entity_id: camera.backyard_camera_high
+        enabled: false
+      - service: notify.mobile_app_colins_iphone
         data:
           message: Backyard Motion Detected
           title: Backyard Motion
           data:
-            image: /local/backyard_image.jpg
+            image: /local/media/backyard/backyard_image.jpg
             actions:
             - action: URI
-              title: View Cameras
-              uri: /front-camera-view/
-            clickAction:
-            - action: URI
-              title: View Cameras
-              uri: /front-camera-view/
-        enabled: false
+              title: Open Cameras
+              uri: /alarm-system/cameras
+            group: motion
+        enabled: true
       - service: input_boolean.turn_off
         data: {}
         target:
@@ -122,21 +131,6 @@
         data: {}
         target:
           entity_id: input_boolean.lights_bright
-      - device_id: c28f1d78a9165faa1a941cd18539ab11
-        domain: mobile_app
-        type: notify
-        message: Front Door Motion Detected
-        title: Front Door Motion
-        data:
-          image: /local/backyard_image.jpg
-          actions:
-          - action: URI
-            title: View Cameras
-            uri: /front-camera-view/
-          clickAction:
-          - action: URI
-            title: View Cameras
-            uri: /front-camera-view/
     - conditions:
       - condition: trigger
         id: garage_motion
@@ -146,23 +140,27 @@
       sequence:
       - service: camera.snapshot
         data:
-          filename: /config/www/garage_image.jpg
+          filename: /config/www/media/garage/garage_image.jpg
         target:
-          entity_id: camera.garage_wifi_high
-      - service: notify.notify
+          entity_id: camera.garage_camera_flex_high
+      - service: camera.snapshot
+        data:
+          filename: /config/www/media/garage/archive/garage_image{{ now().strftime("%Y%m%d-%H%M%S")
+            }}.jpg
+        target:
+          entity_id: camera.garage_camera_flex_high
+        enabled: false
+      - service: notify.mobile_app_colins_iphone
         data:
           message: Motion detected in the garage.
           title: Garage Motion
           data:
-            image: /local/garage_image.jpg
+            image: /local/media/garage/garage_image.jpg
             actions:
             - action: URI
-              title: View Cameras
-              uri: /front-camera-view/
-            clickAction:
-            - action: URI
-              title: View Cameras
-              uri: /front-camera-view/
+              title: Open Cameras
+              uri: /alarm-system/cameras
+            group: motion
       - service: input_boolean.turn_off
         data: {}
         target:
@@ -183,9 +181,9 @@
     seconds: '0'
   condition:
   - condition: device
-    device_id: e0c902fe90a3bbb380e43c7151db3986
+    device_id: 35d7342fde4c6889dc6584da1c1110c6
     domain: cover
-    entity_id: cover.garage_door
+    entity_id: 26be9fb9ac750585b4a1b79d80ee4598
     type: is_open
   action:
   - if:
@@ -207,25 +205,25 @@
       type: close
       enabled: false
     else:
-    - service: notify.notify
+    - service: notify.mobile_app_colins_iphone
       data:
-        message: The garage door is open. Do you want to close it?
         title: Garage Door Open
         data:
-          actions:
-          - action: CLOSE_GARAGE
-            title: Close
+          group: garage
+        message: Garage door is open.
     - wait_for_trigger:
       - platform: event
         event_type: mobile_app_notification_action
         event_data:
           action: CLOSE_GARAGE
-      timeout: 00:05:00
+      timeout: 00:07:00
       continue_on_timeout: false
+      enabled: false
     - device_id: e0c902fe90a3bbb380e43c7151db3986
       domain: cover
       entity_id: cover.garage_door
       type: close
+      enabled: false
   mode: single
 - id: '1658326303235'
   alias: Sunset Lights
@@ -233,7 +231,7 @@
   trigger:
   - platform: sun
     event: sunset
-    offset: -00:30:00
+    offset: -00:37:00
   condition: []
   action:
   - service: scene.turn_on
@@ -242,25 +240,61 @@
     metadata: {}
   - service: scene.turn_on
     target:
-      entity_id: scene.all_internal_lights_on
+      entity_id: scene.living_room_bright_night
     metadata: {}
+  - service: scene.turn_on
+    target:
+      entity_id: scene.bedroom_lights_night_prinary
+    metadata: {}
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.sunset_toggle
   mode: single
 - id: '1658338168827'
-  alias: Colin Arrives Home
+  alias: Colin or Ally Arrives Home
   description: ''
   trigger:
   - platform: device
-    device_id: c28f1d78a9165faa1a941cd18539ab11
+    device_id: 7ce157d8047110f75d72e50667fc3e92
     domain: device_tracker
-    entity_id: device_tracker.colins_iphone_2
+    entity_id: b809ebaf965bb5bc80befba4bd4ec8f1
     type: enters
     zone: zone.home
-  condition: []
+  - platform: device
+    device_id: 6af9101834771eee195e14b0b6ab8408
+    domain: device_tracker
+    entity_id: device_tracker.ally_iphone_37
+    type: enters
+    zone: zone.home
+  condition:
+  - condition: state
+    entity_id: input_boolean.other_people_home
+    state: 'off'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+    enabled: false
   action:
-  - type: turn_on
-    device_id: 4a71ad6c414d69cc0dae0e8824df8c43
-    entity_id: switch.garage_fairy_lights_socket_1
-    domain: switch
+  - if:
+    - condition: or
+      conditions:
+      - condition: device
+        device_id: c28f1d78a9165faa1a941cd18539ab11
+        domain: device_tracker
+        entity_id: device_tracker.colins_iphone
+        type: is_home
+      - condition: device
+        device_id: 6af9101834771eee195e14b0b6ab8408
+        domain: device_tracker
+        entity_id: device_tracker.ally_iphone_37
+        type: is_home
+    then:
+    - service: input_boolean.turn_on
+      data: {}
+      target:
+        entity_id: input_boolean.other_people_home
   - if:
     - condition: time
       after: input_datetime.time_disarm_system
@@ -282,77 +316,119 @@
       domain: cover
       entity_id: cover.garage_door
       type: open
+      enabled: false
     else:
     - service: alarm_control_panel.alarm_disarm
       data: {}
       target:
         entity_id: alarm_control_panel.alexa_guard_703b0
-  mode: single
-- id: '1658342295206'
-  alias: Back Motion Alerts Delay
-  description: When Back Motion Alerts is turned off, it will wait 5 minutes and be
-    turned back on again.
-  trigger:
-  - platform: state
-    entity_id:
-    - input_boolean.back_motion_alerts
-    from: 'on'
-    to: 'off'
-    for:
-      hours: 0
-      minutes: 5
-      seconds: 10
-  condition: []
-  action:
-  - service: input_boolean.turn_on
-    data: {}
-    target:
-      entity_id: input_boolean.back_motion_alerts
+    enabled: false
+  - if:
+    - condition: state
+      entity_id: climate.thermostat
+      state: heat
+    then:
+    - service: climate.set_temperature
+      data:
+        temperature: '{{ states(''input_number.winter_day_temperature'')}}'
+      target:
+        entity_id: climate.thermostat
+    else:
+    - service: climate.set_temperature
+      data:
+        temperature: '{{ states(''input_number.summer_day_temperature'')}}'
+      target:
+        entity_id: climate.thermostat
+    enabled: false
+  - if:
+    - condition: sun
+      before: sunrise
+      after: sunset
+    then:
+    - type: turn_on
+      device_id: 4a71ad6c414d69cc0dae0e8824df8c43
+      entity_id: switch.garage_fairy_lights_socket_1
+      domain: switch
+    enabled: false
   mode: single
 - id: '1658343318484'
-  alias: Colin Leaves Home
+  alias: Colin or Ally Leaves Home
   description: ''
   trigger:
   - platform: device
-    device_id: c28f1d78a9165faa1a941cd18539ab11
+    device_id: 7ce157d8047110f75d72e50667fc3e92
     domain: device_tracker
-    entity_id: device_tracker.colins_iphone_2
+    entity_id: b809ebaf965bb5bc80befba4bd4ec8f1
+    type: leaves
+    zone: zone.home
+  - platform: device
+    device_id: 6af9101834771eee195e14b0b6ab8408
+    domain: device_tracker
+    entity_id: device_tracker.ally_iphone_37
     type: leaves
     zone: zone.home
   condition: []
   action:
-  - device_id: e0c902fe90a3bbb380e43c7151db3986
-    domain: cover
-    entity_id: cover.garage_door
-    type: close
+  - delay:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+  - if:
+    - condition: device
+      device_id: c28f1d78a9165faa1a941cd18539ab11
+      domain: device_tracker
+      entity_id: device_tracker.colins_iphone
+      type: is_not_home
+    - condition: device
+      device_id: 6af9101834771eee195e14b0b6ab8408
+      domain: device_tracker
+      entity_id: device_tracker.ally_iphone_37
+      type: is_not_home
+    then:
+    - service: input_boolean.turn_off
+      data: {}
+      target:
+        entity_id: input_boolean.other_people_home
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.system_armed
+    enabled: false
+  - if:
+    - condition: state
+      entity_id: climate.thermostat
+      state: heat
+    - condition: time
+      after: 07:00:00
+      before: '23:00:00'
+    then:
+    - service: climate.set_temperature
+      data:
+        temperature: 66
+      target:
+        device_id: c187ca77d3a5e76b3a9e4550c9af4405
+    else:
+    - service: climate.set_temperature
+      data:
+        temperature: 78
+      target:
+        device_id: c187ca77d3a5e76b3a9e4550c9af4405
     enabled: false
   - type: turn_off
     device_id: 4a71ad6c414d69cc0dae0e8824df8c43
     entity_id: switch.garage_fairy_lights_socket_1
     domain: switch
     enabled: false
-  - service: input_boolean.turn_on
-    data: {}
-    target:
-      entity_id: input_boolean.system_armed
-  - if:
-    - condition: state
-      entity_id: input_boolean.other_people_home
-      state: 'off'
-    then:
-    - type: turn_off
-      device_id: 4a71ad6c414d69cc0dae0e8824df8c43
-      entity_id: switch.garage_fairy_lights_socket_1
-      domain: switch
-    - device_id: e0c902fe90a3bbb380e43c7151db3986
-      domain: cover
-      entity_id: cover.garage_door
-      type: close
+  - device_id: e0c902fe90a3bbb380e43c7151db3986
+    domain: cover
+    entity_id: cover.garage_door
+    type: close
+    enabled: false
   mode: single
 - id: '1658371596779'
-  alias: Bright Lights On
-  description: When Back Motion Alerts is turned off, it will wait 5 minutes and be
-    turned back on again.
+  alias: Front Bright Lights On
+  description: Turns on Front lights to bright
   trigger:
   - platform: state
     entity_id:
@@ -417,6 +493,10 @@
     data: {}
     target:
       entity_id: input_boolean.lights_bright
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.sunset_toggle
   mode: single
 - id: '1658436887877'
   alias: Garage Motion Alerts Delay
@@ -447,7 +527,7 @@
     at: '23:00:00'
     id: turn_on
   - platform: time
-    at: 06:00:00
+    at: 07:00:00
     id: turn_off
   condition: []
   action:
@@ -463,11 +543,9 @@
     - conditions:
       - condition: trigger
         id: turn_off
-      - condition: device
-        device_id: c28f1d78a9165faa1a941cd18539ab11
-        domain: device_tracker
-        entity_id: device_tracker.colins_iphone
-        type: is_home
+      - condition: state
+        entity_id: input_boolean.other_people_home
+        state: 'on'
       sequence:
       - service: input_boolean.turn_off
         data: {}
@@ -502,7 +580,7 @@
         data: {}
         target:
           entity_id: alarm_control_panel.alexa_guard_703b0
-      - service: notify.notify
+      - service: notify.mobile_app_colins_iphone
         data:
           message: System is no longer armed.
           title: System Unarmed
@@ -512,77 +590,33 @@
       sequence:
       - delay:
           hours: 0
-          minutes: 5
+          minutes: 4
           seconds: 0
           milliseconds: 0
       - if:
-        - condition: device
-          device_id: c28f1d78a9165faa1a941cd18539ab11
-          domain: device_tracker
-          entity_id: device_tracker.iphone_2
-          type: is_not_home
+        - condition: state
+          entity_id: input_boolean.other_people_home
+          state: 'off'
         then:
         - service: alarm_control_panel.alarm_arm_away
           data: {}
           target:
             entity_id: alarm_control_panel.alexa_guard_703b0
-        - service: notify.notify
+          enabled: true
+        - service: notify.mobile_app_colins_iphone
           data:
             message: System and Alexa have been armed.
             title: ~ System Armed ~
         else:
-        - service: notify.notify
+        - service: notify.mobile_app_colins_iphone
           data:
             message: System has been armed. Alexa remains disabled.
             title: ~ System Armed ~ (no Alexa)
+        enabled: true
       - service: input_boolean.turn_on
         data: {}
         target:
           entity_id: input_boolean.garage_motion_alerts
-    default: []
-  mode: single
-- id: '1658509213889'
-  alias: Garage Door Closed/Opened
-  description: ''
-  trigger:
-  - platform: device
-    device_id: e0c902fe90a3bbb380e43c7151db3986
-    domain: cover
-    entity_id: cover.garage_door
-    type: opened
-    for:
-      hours: 0
-      minutes: 0
-      seconds: 5
-    id: opened
-  - platform: device
-    device_id: e0c902fe90a3bbb380e43c7151db3986
-    domain: cover
-    entity_id: cover.garage_door
-    type: closed
-    for:
-      hours: 0
-      minutes: 0
-      seconds: 30
-    id: closed
-    enabled: false
-  condition: []
-  action:
-  - choose:
-    - conditions:
-      - condition: trigger
-        id: opened
-      sequence:
-      - service: notify.notify
-        data:
-          message: Garage Dor Opened
-    - conditions:
-      - condition: trigger
-        id: closed
-      sequence:
-      - service: notify.notify
-        data:
-          message: Garage Door Closed
     default: []
   mode: single
 - id: '1659817361908'
@@ -591,44 +625,46 @@
   trigger:
   - type: opened
     platform: device
-    device_id: 1de4d5ea92974de625cbd4669f3cc7a2
-    entity_id: binary_sensor.z_wave_door_window_sensor_access_control_window_door_is_open
-    domain: binary_sensor
-    id: Front
-  - type: opened
-    platform: device
     device_id: 16df215fae961513c220632cc2628f09
-    entity_id: binary_sensor.sliding_back_door_access_control_window_door_is_open_2
+    entity_id: d8be42f73829ebbe5d881911b70d5b93
     domain: binary_sensor
-    id: Sliding
   - type: opened
     platform: device
     device_id: 5c6f85c0c51c0f9cd3654d75e8abce4a
-    entity_id: binary_sensor.door_to_garage_access_control_window_door_is_open_3
+    entity_id: binary_sensor.door_to_garage_window_door_is_open_2
     domain: binary_sensor
-    id: Garage
+  - type: opened
+    platform: device
+    device_id: 16df215fae961513c220632cc2628f09
+    entity_id: 98e291d554299407803351b5a029d25b
+    domain: binary_sensor
+  - type: opened
+    platform: device
+    device_id: 1de4d5ea92974de625cbd4669f3cc7a2
+    entity_id: f819d3579b01c09971455241d7d40469
+    domain: binary_sensor
+  - type: opened
+    platform: device
+    device_id: 1de4d5ea92974de625cbd4669f3cc7a2
+    entity_id: 110a8abab31a28b81f9405f39b68c70a
+    domain: binary_sensor
   condition:
   - condition: state
     entity_id: input_boolean.system_armed
     state: 'on'
     enabled: false
   action:
-  - service: notify.mobile_app_colins_iphone
-    data:
-      title: SECURITY ALERT
-      message: 'Door opened '
-    enabled: false
   - delay:
       hours: 0
       minutes: 0
-      seconds: 15
+      seconds: 10
       milliseconds: 0
   - if:
     - condition: state
       entity_id: input_boolean.system_armed
       state: 'on'
     then:
-    - service: notify.notify
+    - service: notify.mobile_app_colins_iphone
       data:
         title: SECURITY ALERT!!
         message: Door opened while alarm armed
@@ -681,15 +717,14 @@
     - conditions:
       - condition: trigger
         id: sliding_door
+        enabled: false
       sequence:
       - service: notify.alexa_media
         data:
           target: media_player.black_dot_2, media_player.white_dot_2
           data:
             type: tts
-          message: "{{ ('Where are you going?', 'sliding door',\n    'I miss alley.',
-            'hate to see you go, but I love watching you leave', 'big booty big booty'\n
-            \  )|random }}\n"
+          message: "{{ ('sliding door'\n   )|random }}\n"
     - conditions:
       - condition: trigger
         id: garage
@@ -697,7 +732,7 @@
       - service: notify.alexa_media
         data:
           target: media_player.black_dot_2, media_player.white_dot_2
-          message: garage door
+          message: Garage
           data:
             type: tts
     default: []
@@ -706,21 +741,56 @@
   alias: Garage Fairy Lights On/Off
   description: ''
   trigger:
-  - platform: device
-    type: turned_on
-    device_id: 4a71ad6c414d69cc0dae0e8824df8c43
-    entity_id: switch.garage_fairy_lights_socket_1
-    domain: switch
-    for:
-      hours: 0
-      minutes: 30
-      seconds: 0
+  - platform: state
+    entity_id:
+    - timer.garage_lights_timer
+    to: idle
+    id: Turn_off
+  - platform: state
+    entity_id:
+    - timer.garage_lights_timer
+    to: active
+    id: Turn_on
   condition: []
   action:
-  - type: turn_off
-    device_id: 4a71ad6c414d69cc0dae0e8824df8c43
-    entity_id: switch.garage_fairy_lights_socket_1
-    domain: switch
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: Turn_on
+      sequence:
+      - if:
+        - condition: or
+          conditions:
+          - condition: device
+            device_id: e0c902fe90a3bbb380e43c7151db3986
+            domain: cover
+            entity_id: cover.garage_door
+            type: is_closed
+          - condition: sun
+            after: sunset
+            before: sunrise
+        then:
+        - type: turn_on
+          device_id: 4a71ad6c414d69cc0dae0e8824df8c43
+          entity_id: switch.garage_fairy_lights_socket_1
+          domain: switch
+        - type: turn_on
+          device_id: 7de9c2391e5fa1a8f272e195750cabd1
+          entity_id: switch.christmas_tree_socket_1
+          domain: switch
+        else: []
+    - conditions:
+      - condition: trigger
+        id: Turn_off
+      sequence:
+      - type: turn_off
+        device_id: 4a71ad6c414d69cc0dae0e8824df8c43
+        entity_id: switch.garage_fairy_lights_socket_1
+        domain: switch
+      - type: turn_off
+        device_id: 7de9c2391e5fa1a8f272e195750cabd1
+        entity_id: switch.christmas_tree_socket_1
+        domain: switch
   mode: single
 - id: '1664045965384'
   alias: Turn on Garage Fairy Lights
@@ -735,10 +805,550 @@
       hours: 0
       minutes: 0
       seconds: 0
-  condition: []
+  - type: motion
+    platform: device
+    device_id: 3e8f9b36ef0e4eb37742d812b1ed2167
+    entity_id: binary_sensor.garage_camera_flex_motion
+    domain: binary_sensor
+  - type: opened
+    platform: device
+    device_id: 5c6f85c0c51c0f9cd3654d75e8abce4a
+    entity_id: 9f5682b482d2d0e46d8b91ab6c69e7b8
+    domain: binary_sensor
+  - type: opened
+    platform: device
+    device_id: 5c6f85c0c51c0f9cd3654d75e8abce4a
+    entity_id: ff11611af543e1d84b1e0fa62ed6b26e
+    domain: binary_sensor
+  condition:
+  - condition: or
+    conditions:
+    - condition: device
+      device_id: 35d7342fde4c6889dc6584da1c1110c6
+      domain: cover
+      entity_id: 26be9fb9ac750585b4a1b79d80ee4598
+      type: is_closed
+    - condition: state
+      entity_id: input_boolean.sunset_toggle
+      state: 'on'
+      enabled: true
+    enabled: true
   action:
   - type: turn_on
     device_id: 4a71ad6c414d69cc0dae0e8824df8c43
     entity_id: switch.garage_fairy_lights_socket_1
     domain: switch
+  - type: turn_on
+    device_id: 7de9c2391e5fa1a8f272e195750cabd1
+    entity_id: switch.christmas_tree_socket_1
+    domain: switch
+  - service: timer.start
+    data: {}
+    target:
+      entity_id: timer.garage_lights_timer
+  mode: single
+- id: '1668778306120'
+  alias: 8am Lights On
+  description: 8am
+  trigger:
+  - platform: time
+    at: 08:00:00
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.tablet_screens_on
+    metadata: {}
+  - if:
+    - type: is_humidity
+      condition: device
+      device_id: d5218c111e0d0e5c8e4b6fe1e76eecf0
+      entity_id: sensor.ble_moisture_monstera
+      domain: sensor
+      below: 5
+    then:
+    - device_id: c28f1d78a9165faa1a941cd18539ab11
+      domain: mobile_app
+      type: notify
+      message: Your Monstera plant is a little dry. Please water!
+      title: Water Monstera
+  - if:
+    - type: is_humidity
+      condition: device
+      device_id: 4e63255100f6636fa2439e5d014425e5
+      entity_id: sensor.ble_moisture_caladmium
+      domain: sensor
+      below: 10
+    then:
+    - device_id: c28f1d78a9165faa1a941cd18539ab11
+      domain: mobile_app
+      type: notify
+      message: Your Caladmium plant is a little dry. Please water!
+      title: Water Caladmium
+      data:
+        image: /local/backyard_image.jpg
+  - if:
+    - type: is_humidity
+      condition: device
+      device_id: a919a18f24a9cbac067fb027fa6000a4
+      entity_id: sensor.ble_moisture_pothos_hanging_plant
+      domain: sensor
+      below: 10
+    then:
+    - device_id: c28f1d78a9165faa1a941cd18539ab11
+      domain: mobile_app
+      type: notify
+      message: Your Pothos plant is a little dry. Please water!
+      title: Water Pothos
+  mode: single
+- id: '1680876371307'
+  alias: People Home Off to On
+  description: This is triggered when somebody enters the home zone.
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.other_people_home
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - if:
+    - condition: state
+      entity_id: input_boolean.other_people_home
+      state: 'off'
+    then:
+    - service: input_boolean.turn_on
+      data: {}
+      target:
+        entity_id: input_boolean.other_people_home
+  - if:
+    - condition: sun
+      before: sunrise
+      after: sunset
+    then:
+    - type: turn_on
+      device_id: 4a71ad6c414d69cc0dae0e8824df8c43
+      entity_id: switch.garage_fairy_lights_socket_1
+      domain: switch
+    - service: scene.turn_on
+      target:
+        entity_id: scene.bedroom_lights_daytime_dim
+      metadata: {}
+    else:
+    - service: scene.turn_on
+      data: {}
+      target:
+        entity_id: scene.before_times
+  - if:
+    - condition: time
+      after: input_datetime.time_disarm_system
+      before: input_datetime.arm_system_time
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+      - sat
+      - sun
+    then:
+    - service: input_boolean.turn_off
+      data: {}
+      target:
+        entity_id: input_boolean.system_armed
+    - if:
+      - condition: state
+        entity_id: climate.thermostat
+        state: heat
+      then:
+      - service: climate.set_temperature
+        data:
+          temperature: '{{ states(''input_number.winter_day_temperature'')}}'
+        target:
+          entity_id: climate.thermostat
+      else:
+      - service: climate.set_temperature
+        data:
+          temperature: '{{ states(''input_number.summer_day_temperature'')}}'
+        target:
+          entity_id: climate.thermostat
+      enabled: true
+    else:
+    - service: alarm_control_panel.alarm_disarm
+      data: {}
+      target:
+        entity_id: alarm_control_panel.alexa_guard_703b0
+    - service: script.turn_on
+      data: {}
+      target:
+        entity_id: script.evening_temp
+  - service: spotcast.start
+    data:
+      force_playback: false
+      random_song: false
+      repeat: 'off'
+      shuffle: true
+      offset: 0
+      ignore_fully_played: false
+      device_name: Everywhere
+      uri: spotify:playlist:3vUifyP7bIiB1ujkLyL3em
+    enabled: false
+  - type: turn_on
+    device_id: 4d52a260960a5bd5d43901d86f850213
+    entity_id: 7738d16615622282ebdc8c2eface26f5
+    domain: switch
+  mode: single
+- id: '1680876766815'
+  alias: People Home On to Off
+  description: This is triggered when the last person leaves the home.
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.other_people_home
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: scene.create
+    data:
+      scene_id: before_times
+      snapshot_entities:
+      - light.bedroom_downlights
+      - light.living_room_downlights
+      - light.kitchen
+      - light.tripod_lamp
+    enabled: true
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.system_armed
+  - if:
+    - condition: state
+      entity_id: climate.thermostat
+      state: heat
+    - condition: time
+      after: 07:00:00
+      before: '23:00:00'
+    then:
+    - service: climate.set_temperature
+      data:
+        temperature: '{{ states(''sensor.set_thermostat_temp'') | float - 1  }}'
+        hvac_mode: heat
+      target:
+        entity_id: climate.thermostat
+    else:
+    - service: climate.set_temperature
+      data:
+        temperature: 78
+        hvac_mode: cool
+      target:
+        entity_id: climate.thermostat
+  - type: turn_off
+    device_id: 4a71ad6c414d69cc0dae0e8824df8c43
+    entity_id: switch.garage_fairy_lights_socket_1
+    domain: switch
+    enabled: true
+  - service: scene.turn_on
+    target:
+      entity_id: scene.daytime_away
+    metadata: {}
+  - type: turn_off
+    device_id: 4d52a260960a5bd5d43901d86f850213
+    entity_id: 7738d16615622282ebdc8c2eface26f5
+    domain: switch
+  mode: single
+- id: '1680978123497'
+  alias: Elite Fitness - Arrive
+  description: Notifies users to start a workout when they arrive at elite fitness
+  trigger:
+  - platform: device
+    device_id: 7ce157d8047110f75d72e50667fc3e92
+    domain: device_tracker
+    entity_id: b809ebaf965bb5bc80befba4bd4ec8f1
+    type: enters
+    zone: zone.elite_fitness
+  - platform: device
+    device_id: 6af9101834771eee195e14b0b6ab8408
+    domain: device_tracker
+    entity_id: device_tracker.ally_iphone_37
+    type: enters
+    zone: zone.elite_fitness
+  - platform: zone
+    entity_id: person.offsetkeyz
+    zone: zone.elite_fitness
+    event: enter
+  condition: []
+  action:
+  - delay:
+      hours: 0
+      minutes: 4
+      seconds: 0
+      milliseconds: 0
+  - if:
+    - condition: zone
+      entity_id: person.offsetkeyz
+      zone: zone.elite_fitness
+    then:
+    - service: notify.mobile_app_colins_iphone
+      data:
+        title: Start Workout
+        message: Don’t forget to start a workout on your watch!
+  - if:
+    - condition: zone
+      entity_id: person.ally
+      zone: zone.elite_fitness
+    then:
+    - service: notify.mobile_app_iphone_286
+      data:
+        message: Start a workout!
+  mode: single
+- id: '1682551185188'
+  alias: Thermostat Unavailable
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - climate.thermostat
+    to: unavailable
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+  condition: []
+  action:
+  - service: notify.mobile_app_colins_iphone
+    data:
+      message: Thermostat Unavailable
+  mode: single
+- id: '1683142099481'
+  alias: Romance Button
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_button.romance_on
+  condition: []
+  action:
+  - service: scene.turn_on
+    data:
+      transition: 2
+    target:
+      entity_id: scene.romance
+  - service: spotcast.start
+    data:
+      device_name: Everywhere
+      uri: spotify:playlist:37i9dQZF1DXbEm2sKzgoJ8
+      limit: 20
+      force_playback: false
+      random_song: true
+      repeat: 'off'
+      shuffle: true
+      offset: 0
+      ignore_fully_played: false
+  mode: single
+- id: '1685559829141'
+  alias: Ally Work Morning Checks
+  description: If Ally is at Colins house and has work the next day Alarm
+  trigger:
+  - platform: time
+    at: 05:45:00
+  condition:
+  - condition: device
+    device_id: 6af9101834771eee195e14b0b6ab8408
+    domain: device_tracker
+    entity_id: device_tracker.ally_iphone_37
+    type: is_home
+  - condition: state
+    entity_id: input_boolean.ally_work_tomorrow
+    state: 'on'
+  action:
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.system_armed
+  - if:
+    - condition: numeric_state
+      entity_id: sensor.iphone_37_steps
+      below: 1
+    then:
+    - service: notify.mobile_app_iphone_37
+      data:
+        data:
+          push:
+            sound:
+              critical: 1
+              name: default
+              volume: 1
+        message: Wake Up!
+    - delay:
+        hours: 0
+        minutes: 3
+        seconds: 0
+        milliseconds: 0
+    - if:
+      - condition: numeric_state
+        entity_id: sensor.iphone_37_steps
+        below: 1
+      then:
+      - service: notify.mobile_app_iphone_37
+        data:
+          data:
+            push:
+              sound:
+                critical: 1
+                name: default
+                volume: 1
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.ally_work_tomorrow
+  - delay:
+      hours: 0
+      minutes: 30
+      seconds: 0
+      milliseconds: 0
+  mode: single
+- id: '1694288192466'
+  alias: TEST SECURITY ONION SUPPRESS SID
+  description: ''
+  trigger:
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: SUPPRESS_SID
+  condition: []
+  action:
+  - service: notify.mobile_app_colins_iphone
+    data:
+      message: received action
+    enabled: false
+  - service: input_text.set_value
+    data:
+      value: '{{ trigger.event.data.reply_text }}'
+    target:
+      entity_id: input_text.suppress_sid
+  - service: shell_command.suppress_sid_to_n8n
+    data: {}
+  mode: single
+- id: '1697597226286'
+  description: ''
+  trigger:
+  - platform: time
+    at: input_datetime.light_alarm
+  condition:
+  - condition: state
+    entity_id: input_boolean.other_people_home
+    state: 'on'
+  - condition: state
+    entity_id: input_boolean.morning_light_alarm
+    state: 'on'
+  action:
+  - service: input_button.press
+    data: {}
+    target:
+      entity_id: input_button.lights_fade_in
+  mode: single
+- id: '1697991110219'
+  alias: Set Morning and Evening Temps
+  description: ''
+  trigger:
+  - platform: time
+    at: 05:00:00
+    id: morning
+  - platform: time
+    at: '22:00:00'
+    id: evening
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id:
+        - morning
+      sequence:
+      - service: script.morning_temp
+        data: {}
+    - conditions:
+      - condition: trigger
+        id:
+        - evening
+      sequence:
+      - service: script.evening_temp
+        data: {}
+  mode: restart
+- id: '1698267632925'
+  alias: Normalize Temperature
+  description: every 20 minutes, check the temperature to see if it's outside of 4
+    degrees to what the thermostat is set to
+  trigger:
+  - platform: time_pattern
+    minutes: '15'
+  condition: []
+  action:
+  - service: script.temperature_normalizer
+    data: {}
+  mode: single
+- id: '1698270446638'
+  alias: Light Alarm Notification
+  description: The blueprint that sends the notification. Must be triggered.
+  use_blueprint:
+    path: Hypercookie/ios_notification_blueprint.yaml
+    input:
+      target_for_notifications: colin_and_allys_phones
+      dummy: true
+      trigger_source: input_button.light_alarm_notification_trigger
+      message_content: Light Alarm for Tomorrow
+      interruption_level: time-sensitive
+      url: /living-room/light-alarm
+      message_text: Lights will fade in starting at {{ states('input_datetime.light_alarm')}}
+      action_1_action_text_input_button_title: Looks Good
+      action_1_title: Looks Good
+      action_2_title: Change
+      action_2_action_text_input_button_title: Change
+      action_2_action_enabled: true
+      action_1_action_enabled: true
+      action_2_action_uri: /living-room/light-alarm
+      badge_type: -1
+- id: '1698271178198'
+  alias: Trigger light alarm automation
+  description: This is the time the light alarm notification will go off
+  trigger:
+  - platform: time
+    at: '21:30:00'
+  condition: []
+  action:
+  - service: input_button.press
+    data: {}
+    target:
+      entity_id: input_button.light_alarm_notification_trigger
+  mode: single
+- id: '1699129734166'
+  alias: Lights Fade Button Press
+  description: Press the button and the lights will fade in
+  trigger:
+  - platform: state
+    entity_id:
+    - input_button.lights_fade_in
+  condition: []
+  action:
+  - service: script.morning_lights_on
+    data: {}
+  mode: single
+- id: '1699130022559'
+  alias: Stop lights fading
+  description: Button is pressed, stops fade in script, turns off all lights
+  trigger:
+  - platform: state
+    entity_id:
+    - input_button.stop_light_fade
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.bedroom_lights_off
+    metadata: {}
+  - service: script.turn_off
+    data: {}
+    target:
+      entity_id: script.morning_lights_on
   mode: single

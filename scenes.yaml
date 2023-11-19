@@ -1,183 +1,127 @@
-- id: "1658160253461"
+- id: '1658160253461'
   name: Front Lights Dim
   entities:
     light.front_left_light:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-        - brightness
-        - color_temp
-        - hs
+      - brightness
+      - color_temp
+      - hs
       color_mode: hs
-      brightness: 204
+      brightness: 255
+      color_temp_kelvin:
+      color_temp:
       hs_color:
-        - 45.125
-        - 100
+      - 193.538
+      - 45.276
       rgb_color:
-        - 255
-        - 191
-        - 0
+      - 139
+      - 228
+      - 255
       xy_color:
-        - 0.527
-        - 0.447
+      - 0.212
+      - 0.3
       friendly_name: Front left light
       supported_features: 0
-      state: "on"
+      state: 'on'
     light.front_right_light:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-        - brightness
-        - color_temp
-        - hs
-      color_mode: hs
-      brightness: 204
+      - brightness
+      - color_temp
+      - hs
+      color_mode: color_temp
+      brightness: 255
+      color_temp_kelvin: 6535
+      color_temp: 153
       hs_color:
-        - 45.125
-        - 100
+      - 54.768
+      - 1.6
       rgb_color:
-        - 255
-        - 191
-        - 0
+      - 255
+      - 254
+      - 250
       xy_color:
-        - 0.527
-        - 0.447
+      - 0.326
+      - 0.333
       friendly_name: Front right light
       supported_features: 0
-      state: "on"
+      state: 'on'
     light.back_porch:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-        - brightness
-        - color_temp
-        - hs
-      color_mode: hs
+      - brightness
+      - color_temp
+      - hs
+      color_mode: color_temp
       brightness: 181
+      color_temp_kelvin: 6535
+      color_temp: 153
       hs_color:
-        - 45.125
-        - 100
+      - 54.768
+      - 1.6
       rgb_color:
-        - 255
-        - 191
-        - 0
+      - 255
+      - 254
+      - 250
       xy_color:
-        - 0.527
-        - 0.447
+      - 0.326
+      - 0.333
       friendly_name: Back porch
       supported_features: 0
-      state: "on"
+      state: 'on'
   icon: mdi:lightbulb-on-30
   metadata: {}
-- id: "1658160355370"
-  name: Front Lights Bright
-  entities:
-    light.front_left_light:
-      min_mireds: 153
-      max_mireds: 500
-      supported_color_modes:
-        - brightness
-        - color_temp
-        - hs
-      friendly_name: Front left light
-      supported_features: 0
-      color_mode: hs
-      brightness: 255
-      hs_color:
-        - 150.418
-        - 0
-      rgb_color:
-        - 255
-        - 255
-        - 255
-      xy_color:
-        - 0.323
-        - 0.329
-      state: "on"
-    light.front_right_light:
-      min_mireds: 153
-      max_mireds: 500
-      supported_color_modes:
-        - brightness
-        - color_temp
-        - hs
-      friendly_name: Front right light
-      supported_features: 0
-      color_mode: hs
-      brightness: 255
-      hs_color:
-        - 15.042
-        - 0
-      rgb_color:
-        - 255
-        - 255
-        - 255
-      xy_color:
-        - 0.323
-        - 0.329
-      state: "on"
-    light.back_porch:
-      min_mireds: 153
-      max_mireds: 500
-      supported_color_modes:
-        - brightness
-        - color_temp
-        - hs
-      friendly_name: Back porch
-      supported_features: 0
-      color_mode: hs
-      brightness: 255
-      hs_color:
-        - 269.749
-        - 0
-      rgb_color:
-        - 255
-        - 255
-        - 255
-      xy_color:
-        - 0.323
-        - 0.329
-      state: "on"
-  icon: mdi:lightbulb-on-90
-  metadata: {}
-- id: "1658414094003"
+- id: '1658414094003'
   name: All Internal Lights On
   entities:
     light.kitchen:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-        - color_temp
-        - xy
+      - color_temp
+      - xy
+      color_mode: color_temp
+      brightness: 255
+      color_temp_kelvin: 2666
+      color_temp: 375
+      hs_color:
+      - 28.47
+      - 66.821
+      rgb_color:
+      - 255
+      - 165
+      - 84
+      xy_color:
+      - 0.53
+      - 0.388
       is_hue_group: true
       hue_scenes: []
       hue_type: room
       lights:
-        - Hue lightstrip plus 1
+      - Hue lightstrip plus 1
       dynamics: false
       icon: mdi:lightbulb-group
       friendly_name: Kitchen
       supported_features: 40
-      color_mode: color_temp
-      brightness: 255
-      color_temp: 375
-      hs_color:
-        - 28.47
-        - 66.821
-      rgb_color:
-        - 255
-        - 165
-        - 84
-      xy_color:
-        - 0.53
-        - 0.388
-      state: "on"
+      state: 'on'
     light.left_of_bed:
       effect_list:
-        - None
-        - candle
+      - None
+      - candle
       supported_color_modes:
-        - brightness
+      - brightness
       mode: normal
       dynamics: none
       friendly_name: Left of bed
@@ -185,13 +129,13 @@
       color_mode: brightness
       brightness: 255
       effect: None
-      state: "on"
+      state: 'on'
     light.right_of_bed:
       effect_list:
-        - None
-        - candle
+      - None
+      - candle
       supported_color_modes:
-        - brightness
+      - brightness
       mode: normal
       dynamics: none
       friendly_name: Right of bed
@@ -199,192 +143,2954 @@
       color_mode: brightness
       brightness: 255
       effect: None
-      state: "on"
+      state: 'on'
     switch.salt_lamp_socket_1:
       device_class: outlet
       friendly_name: Salt Lamp Socket 1
-      state: "on"
+      state: 'on'
     light.tripod_lamp:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-        - color_temp
-        - xy
-      mode: normal
-      dynamics: none
-      friendly_name: Tripod lamp
-      supported_features: 40
+      - color_temp
+      - xy
       color_mode: color_temp
       brightness: 255
-      color_temp: 375
       hs_color:
-        - 28.47
-        - 66.821
+      - 27.265
+      - 46.72
       rgb_color:
-        - 255
-        - 165
-        - 84
+      - 255
+      - 190
+      - 135
       xy_color:
-        - 0.53
-        - 0.388
-      state: "on"
-    light.square_lamp:
-      effect_list:
-        - None
-        - candle
-      supported_color_modes:
-        - brightness
+      - 0.461
+      - 0.376
       mode: normal
       dynamics: none
+      friendly_name: Dining room
+      supported_features: 40
+      color_temp_kelvin: 3412
+      color_temp: 293
+      state: 'on'
+    light.square_lamp:
+      effect_list:
+      - None
+      - candle
+      supported_color_modes:
+      - brightness
       friendly_name: Square lamp
       supported_features: 44
+      state: unavailable
+    light.wiz_tunable_white_642bb2:
+      min_color_temp_kelvin: 2702
+      max_color_temp_kelvin: 5000
+      min_mireds: 200
+      max_mireds: 370
+      effect_list:
+      - Cozy
+      - Wake up
+      - Bedtime
+      - Warm White
+      - Daylight
+      - Cool white
+      - Night light
+      - Focus
+      - Relax
+      - TV time
+      - Candlelight
+      - Golden white
+      - Pulse
+      - Steampunk
+      supported_color_modes:
+      - color_temp
+      friendly_name: WiZ Tunable White 642BB2
+      supported_features: 4
+      color_mode: color_temp
+      brightness: 255
+      color_temp_kelvin: 3278
+      color_temp: 305
+      hs_color:
+      - 27.423
+      - 49.825
+      rgb_color:
+      - 255
+      - 186
+      - 127
+      xy_color:
+      - 0.472
+      - 0.379
+      state: 'on'
+    light.hue_white_lamp_1:
+      effect_list:
+      - None
+      - candle
+      supported_color_modes:
+      - brightness
       color_mode: brightness
       brightness: 255
       effect: None
-      state: "on"
+      mode: normal
+      dynamics: none
+      friendly_name: Tripod lamp
+      supported_features: 44
+      state: 'on'
   icon: mdi:sun-angle
   metadata: {}
-- id: "1658839426542"
+- id: '1658839426542'
   name: Daytime Raining Lights
   entities:
     light.front_left_light:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-        - brightness
-        - color_temp
-        - hs
-      friendly_name: Front left light
-      supported_features: 0
+      - brightness
+      - color_temp
+      - hs
       color_mode: hs
       brightness: 204
       hs_color:
-        - 194.54
-        - 100
+      - 209.582
+      - 0
       rgb_color:
-        - 0
-        - 193
-        - 255
+      - 255
+      - 255
+      - 255
       xy_color:
-        - 0.146
-        - 0.242
-      state: "on"
+      - 0.323
+      - 0.329
+      friendly_name: Front left light
+      supported_features: 0
+      state: 'on'
     light.front_right_light:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-        - brightness
-        - color_temp
-        - hs
+      - brightness
+      - color_temp
+      - hs
+      color_mode: hs
+      brightness: 255
+      hs_color:
+      - 45.125
+      - 0
+      rgb_color:
+      - 255
+      - 255
+      - 255
+      xy_color:
+      - 0.323
+      - 0.329
       friendly_name: Front right light
       supported_features: 0
-      color_mode: hs
-      brightness: 255
-      hs_color:
-        - 194.54
-        - 100
-      rgb_color:
-        - 0
-        - 193
-        - 255
-      xy_color:
-        - 0.146
-        - 0.242
-      state: "on"
+      state: 'on'
     light.back_porch:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-        - brightness
-        - color_temp
-        - hs
+      - brightness
+      - color_temp
+      - hs
+      color_mode: hs
+      brightness: 255
+      hs_color:
+      - 194.54
+      - 0
+      rgb_color:
+      - 255
+      - 255
+      - 255
+      xy_color:
+      - 0.323
+      - 0.329
       friendly_name: Back porch
       supported_features: 0
-      color_mode: hs
-      brightness: 255
-      hs_color:
-        - 194.54
-        - 100
-      rgb_color:
-        - 0
-        - 193
-        - 255
-      xy_color:
-        - 0.146
-        - 0.242
-      state: "on"
+      state: 'on'
     light.hanging_bulb:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-        - brightness
-        - color_temp
-        - hs
+      - brightness
+      - color_temp
+      - hs
       friendly_name: Hanging Bulb
       supported_features: 0
-      color_mode: hs
-      brightness: 255
-      hs_color:
-        - 194.54
-        - 85.827
-      rgb_color:
-        - 36
-        - 201
-        - 255
-      xy_color:
-        - 0.152
-        - 0.255
-      state: "on"
+      state: unavailable
     light.kitchen:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-        - color_temp
-        - xy
-      color_mode: xy
-      brightness: 255
+      - color_temp
+      - xy
+      color_mode: color_temp
+      brightness: 201
+      color_temp_kelvin: 6535
+      color_temp: 153
       hs_color:
-        - 195.31
-        - 56.863
+      - 54.768
+      - 1.6
       rgb_color:
-        - 110
-        - 218
-        - 255
+      - 255
+      - 254
+      - 250
       xy_color:
-        - 0.189
-        - 0.284
+      - 0.326
+      - 0.333
       is_hue_group: true
       hue_scenes: []
       hue_type: room
       lights:
-        - Hue lightstrip plus 1
+      - Hue lightstrip plus 1
       dynamics: false
       icon: mdi:lightbulb-group
       friendly_name: Kitchen
       supported_features: 40
-      state: "on"
+      state: 'on'
     light.tripod_lamp:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
-        - color_temp
-        - xy
+      - color_temp
+      - xy
+      color_mode: color_temp
+      brightness: 255
+      hs_color:
+      - 26.805
+      - 34.581
+      rgb_color:
+      - 255
+      - 206
+      - 166
+      xy_color:
+      - 0.42
+      - 0.365
+      mode: normal
+      dynamics: none
+      friendly_name: Dining room
+      supported_features: 40
+      color_temp_kelvin: 4016
+      color_temp: 249
+      state: 'on'
+    switch.christmas_ligjts_socket_1:
+      device_class: outlet
+      friendly_name: Christmas ligjts Socket 1
+      state: 'off'
+  icon: mdi:ceiling-light
+  metadata: {}
+- id: '1681506949835'
+  name: All Off
+  entities:
+    light.bedroom_downlights:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      rgbw_color:
+      effect:
+      entity_id:
+      - light.bedroom_downlight_1
+      - light.bedroom_downlight_2
+      - light.bedroom_downlight_3
+      - light.bedroom_downlight_4
+      icon: mdi:lightbulb-group
+      friendly_name: Bedroom Downlights
+      supported_features: 4
+      state: 'off'
+    light.living_room_downlights:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      rgbw_color:
+      effect:
+      entity_id:
+      - light.living_room_downlight_1
+      - light.living_room_downlight_2
+      - light.living_room_downlight_3
+      - light.living_room_downlight_4
+      icon: mdi:lightbulb-group
+      friendly_name: Living Room Downlights
+      supported_features: 4
+      state: 'off'
+    light.hue_white_lamp_1:
+      effect_list:
+      - None
+      - candle
+      supported_color_modes:
+      - brightness
+      color_mode:
+      brightness:
+      effect:
       mode: normal
       dynamics: none
       friendly_name: Tripod lamp
+      supported_features: 44
+      state: 'off'
+    light.bedside_lights:
+      effect_list:
+      - None
+      - candle
+      supported_color_modes:
+      - brightness
+      color_mode:
+      brightness:
+      effect:
+      entity_id:
+      - light.right_of_bed
+      - light.left_of_bed
+      icon: mdi:lightbulb-group
+      friendly_name: Bedside Lights
+      supported_features: 44
+      state: 'off'
+    switch.salt_lamp_socket_1:
+      device_class: outlet
+      friendly_name: Salt Lamp Socket 1
+      state: 'off'
+    light.kitchen:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      is_hue_group: true
+      hue_scenes: []
+      hue_type: room
+      lights:
+      - Hue lightstrip plus 1
+      dynamics: false
+      icon: mdi:lightbulb-group
+      friendly_name: Kitchen
       supported_features: 40
+      state: 'off'
+    light.hexsex:
+      restored: true
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 9009
+      min_mireds: 111
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: HexSex
+      supported_features: 19
+      state: unavailable
+    light.light_strip:
+      restored: true
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 9009
+      min_mireds: 111
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Light strip
+      supported_features: 19
+      state: unavailable
+  icon: mdi:bed-double
+  metadata:
+    light.bedroom_downlights:
+      entity_only: true
+    light.living_room_downlights:
+      entity_only: true
+    light.hue_white_lamp_1:
+      entity_only: true
+    light.bedside_lights:
+      entity_only: true
+    switch.salt_lamp_socket_1:
+      entity_only: true
+    light.kitchen:
+      entity_only: true
+    light.light_strip:
+      entity_only: true
+- id: '1681507059929'
+  name: Dim - evening
+  entities:
+    light.bedroom_downlights:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      entity_id:
+      - light.bedroom_downlight_1
+      - light.bedroom_downlight_2
+      - light.bedroom_downlight_3
+      - light.bedroom_downlight_4
+      icon: mdi:lightbulb-group
+      friendly_name: Bedroom Downlights
+      supported_features: 4
+      color_mode: color_temp
+      brightness: 26
+      color_temp_kelvin: 2202
+      color_temp: 454
+      hs_color:
+      - 29.79
+      - 84.553
+      rgb_color:
+      - 255
+      - 146
+      - 39
+      xy_color:
+      - 0.579
+      - 0.388
+      state: 'on'
+    light.bedside_lights:
+      effect_list:
+      - None
+      - candle
+      supported_color_modes:
+      - brightness
+      entity_id:
+      - light.right_of_bed
+      - light.left_of_bed
+      icon: mdi:lightbulb-group
+      friendly_name: Bedside Lights
+      supported_features: 44
+      color_mode: brightness
+      brightness: 128
+      effect: None
+      state: 'on'
+    switch.salt_lamp_socket_1:
+      device_class: outlet
+      friendly_name: Salt Lamp Socket 1
+      state: 'on'
+    light.living_room_downlights:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      entity_id:
+      - light.living_room_downlight_1
+      - light.living_room_downlight_2
+      - light.living_room_downlight_3
+      - light.living_room_downlight_4
+      icon: mdi:lightbulb-group
+      friendly_name: Living Room Downlights
+      supported_features: 4
+      color_mode: color_temp
+      brightness: 26
+      color_temp_kelvin: 2202
+      color_temp: 454
+      hs_color:
+      - 29.79
+      - 84.553
+      rgb_color:
+      - 255
+      - 146
+      - 39
+      xy_color:
+      - 0.579
+      - 0.388
+      state: 'on'
+    light.hue_white_lamp_1:
+      effect_list:
+      - None
+      - candle
+      supported_color_modes:
+      - brightness
+      mode: normal
+      dynamics: none
+      friendly_name: Tripod lamp
+      supported_features: 44
+      color_mode: brightness
+      brightness: 76
+      effect: None
+      state: 'on'
+    light.kitchen:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      is_hue_group: true
+      hue_scenes: []
+      hue_type: room
+      lights:
+      - Hue lightstrip plus 1
+      dynamics: false
+      icon: mdi:lightbulb-group
+      friendly_name: Kitchen
+      supported_features: 40
+      color_mode: color_temp
+      brightness: 125
+      color_temp_kelvin: 2710
+      color_temp: 369
+      hs_color:
+      - 28.373
+      - 65.405
+      rgb_color:
+      - 255
+      - 167
+      - 88
+      xy_color:
+      - 0.524
+      - 0.388
+      state: 'on'
+  icon: mdi:lightbulb-on-10
+  metadata:
+    light.bedroom_downlights:
+      entity_only: true
+    light.bedside_lights:
+      entity_only: true
+    switch.salt_lamp_socket_1:
+      entity_only: true
+    light.living_room_downlights:
+      entity_only: true
+    light.hue_white_lamp_1:
+      entity_only: true
+    light.kitchen:
+      entity_only: true
+- id: '1681507181052'
+  name: Bright - Night
+  entities:
+    light.left_of_bed:
+      effect_list:
+      - None
+      - candle
+      supported_color_modes:
+      - brightness
+      mode: normal
+      dynamics: none
+      friendly_name: Left of bed
+      supported_features: 44
+      color_mode: brightness
+      brightness: 255
+      effect: None
+      state: 'on'
+    light.right_of_bed:
+      effect_list:
+      - None
+      - candle
+      supported_color_modes:
+      - brightness
+      mode: normal
+      dynamics: none
+      friendly_name: Right of bed
+      supported_features: 44
+      color_mode: brightness
+      brightness: 255
+      effect: None
+      state: 'on'
+    switch.salt_lamp_socket_1:
+      device_class: outlet
+      friendly_name: Salt Lamp Socket 1
+      state: 'on'
+    light.bedroom_downlights:
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      icon: mdi:lightbulb-group
+      friendly_name: Bedroom Downlights
+      supported_features: 4
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      entity_id:
+      - light.bedroom_downlight_1
+      - light.bedroom_downlight_2
+      - light.bedroom_downlight_3
+      - light.bedroom_downlight_4
+      color_mode: color_temp
+      brightness: 166
+      hs_color:
+      - 29.79
+      - 84.553
+      rgb_color:
+      - 255
+      - 146
+      - 39
+      xy_color:
+      - 0.579
+      - 0.388
+      color_temp_kelvin: 2202
+      color_temp: 454
+      state: 'on'
+    light.living_room_downlights:
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      icon: mdi:lightbulb-group
+      friendly_name: Living Room Downlights
+      supported_features: 4
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      entity_id:
+      - light.living_room_downlight_1
+      - light.living_room_downlight_2
+      - light.living_room_downlight_3
+      - light.living_room_downlight_4
+      color_mode: color_temp
+      brightness: 178
+      color_temp_kelvin: 2202
+      color_temp: 454
+      hs_color:
+      - 29.79
+      - 84.553
+      rgb_color:
+      - 255
+      - 146
+      - 39
+      xy_color:
+      - 0.579
+      - 0.388
+      state: 'on'
+  metadata:
+    light.bedroom_downlights:
+      entity_only: true
+    light.living_room_downlights:
+      entity_only: true
+  icon: mdi:lightbulb-night
+- id: '1681507354890'
+  name: Movie
+  entities:
+    light.bedroom_downlight_1:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Ocean
+      - Romance
+      - Sunset
+      - Party
+      - Fireplace
+      - Cozy
+      - Forest
+      - Pastel Colors
+      - Wake up
+      - Bedtime
+      - Warm White
+      - Daylight
+      - Cool white
+      - Night light
+      - Focus
+      - Relax
+      - True colors
+      - TV time
+      - Plantgrowth
+      - Spring
+      - Summer
+      - Fall
+      - Deepdive
+      - Jungle
+      - Mojito
+      - Club
+      - Christmas
+      - Halloween
+      - Candlelight
+      - Golden white
+      - Pulse
+      - Steampunk
+      - Rhythm
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      friendly_name: Bedroom Downlight 1
+      supported_features: 4
+      color_mode: rgbw
+      brightness: 36
+      hs_color:
+      - 300
+      - 100
+      rgb_color:
+      - 255
+      - 0
+      - 255
+      rgbw_color:
+      - 255
+      - 0
+      - 255
+      - 0
+      xy_color:
+      - 0.385
+      - 0.155
+      state: 'on'
+    light.bedroom_downlight_2:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Ocean
+      - Romance
+      - Sunset
+      - Party
+      - Fireplace
+      - Cozy
+      - Forest
+      - Pastel Colors
+      - Wake up
+      - Bedtime
+      - Warm White
+      - Daylight
+      - Cool white
+      - Night light
+      - Focus
+      - Relax
+      - True colors
+      - TV time
+      - Plantgrowth
+      - Spring
+      - Summer
+      - Fall
+      - Deepdive
+      - Jungle
+      - Mojito
+      - Club
+      - Christmas
+      - Halloween
+      - Candlelight
+      - Golden white
+      - Pulse
+      - Steampunk
+      - Rhythm
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      friendly_name: Bedroom Downlight 2
+      supported_features: 4
+      color_mode: rgbw
+      brightness: 26
+      hs_color:
+      - 15.059
+      - 100
+      rgb_color:
+      - 255
+      - 64
+      - 0
+      rgbw_color:
+      - 255
+      - 64
+      - 0
+      - 0
+      xy_color:
+      - 0.676
+      - 0.32
+      state: 'on'
+    light.bedroom_downlight_3:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Ocean
+      - Romance
+      - Sunset
+      - Party
+      - Fireplace
+      - Cozy
+      - Forest
+      - Pastel Colors
+      - Wake up
+      - Bedtime
+      - Warm White
+      - Daylight
+      - Cool white
+      - Night light
+      - Focus
+      - Relax
+      - True colors
+      - TV time
+      - Plantgrowth
+      - Spring
+      - Summer
+      - Fall
+      - Deepdive
+      - Jungle
+      - Mojito
+      - Club
+      - Christmas
+      - Halloween
+      - Candlelight
+      - Golden white
+      - Pulse
+      - Steampunk
+      - Rhythm
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      friendly_name: Bedroom Downlight 3
+      supported_features: 4
+      color_mode: rgbw
+      brightness: 66
+      hs_color:
+      - 225.118
+      - 99.608
+      rgb_color:
+      - 1
+      - 64
+      - 255
+      rgbw_color:
+      - 1
+      - 64
+      - 255
+      - 0
+      xy_color:
+      - 0.137
+      - 0.066
+      state: 'on'
+    light.bedroom_downlight_4:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Ocean
+      - Romance
+      - Sunset
+      - Party
+      - Fireplace
+      - Cozy
+      - Forest
+      - Pastel Colors
+      - Wake up
+      - Bedtime
+      - Warm White
+      - Daylight
+      - Cool white
+      - Night light
+      - Focus
+      - Relax
+      - True colors
+      - TV time
+      - Plantgrowth
+      - Spring
+      - Summer
+      - Fall
+      - Deepdive
+      - Jungle
+      - Mojito
+      - Club
+      - Christmas
+      - Halloween
+      - Candlelight
+      - Golden white
+      - Pulse
+      - Steampunk
+      - Rhythm
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      friendly_name: Bedroom Downlight 4
+      supported_features: 4
+      state: 'off'
+    switch.salt_lamp_socket_1:
+      device_class: outlet
+      friendly_name: Salt Lamp Socket 1
+      state: 'on'
+    light.living_room_downlights:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      entity_id:
+      - light.living_room_downlight_1
+      - light.living_room_downlight_2
+      - light.living_room_downlight_3
+      - light.living_room_downlight_4
+      icon: mdi:lightbulb-group
+      friendly_name: Living Room Downlights
+      supported_features: 4
+      color_mode: color_temp
+      brightness: 41
+      color_temp_kelvin: 2202
+      color_temp: 454
+      hs_color:
+      - 29.79
+      - 84.553
+      rgb_color:
+      - 255
+      - 146
+      - 39
+      xy_color:
+      - 0.579
+      - 0.388
+      state: 'on'
+    light.bedside_lights:
+      effect_list:
+      - None
+      - candle
+      supported_color_modes:
+      - brightness
+      entity_id:
+      - light.right_of_bed
+      - light.left_of_bed
+      icon: mdi:lightbulb-group
+      friendly_name: Bedside Lights
+      supported_features: 44
+      state: 'off'
+    light.kitchen:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      is_hue_group: true
+      hue_scenes: []
+      hue_type: room
+      lights:
+      - Hue lightstrip plus 1
+      dynamics: false
+      icon: mdi:lightbulb-group
+      friendly_name: Kitchen
+      supported_features: 40
+      state: 'off'
+    light.hexsex:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 9009
+      min_mireds: 111
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - hs
+      rate_limit_total: 100
+      rate_limit_remaining: -57809
+      rate_limit_reset_seconds: -1692671486.43
+      rate_limit_reset: '1969-12-31T19:00:00'
+      rate_limit_on: 5
+      manufacturer: Govee
+      model: H6061
+      friendly_name: HexSex
+      supported_features: 19
+      state: 'off'
+    light.light_strip:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 9009
+      min_mireds: 111
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - hs
+      rate_limit_total: 100
+      rate_limit_remaining: -57809
+      rate_limit_reset_seconds: -1692671486.43
+      rate_limit_reset: '1969-12-31T19:00:00'
+      rate_limit_on: 5
+      manufacturer: Govee
+      model: H619Z
+      friendly_name: Light strip
+      supported_features: 19
+      state: 'off'
+  icon: mdi:bed-double
+  metadata:
+    light.living_room_downlights:
+      entity_only: true
+    light.bedside_lights:
+      entity_only: true
+    light.kitchen:
+      entity_only: true
+- id: '1681852383605'
+  name: Saltlamp Only
+  entities:
+    switch.salt_lamp_socket_1:
+      device_class: outlet
+      friendly_name: Salt Lamp Socket 1
+      state: 'on'
+    light.bedroom_downlights:
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      icon: mdi:lightbulb-group
+      friendly_name: Bedroom Downlights
+      supported_features: 4
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      entity_id:
+      - light.bedroom_downlight_1
+      - light.bedroom_downlight_2
+      - light.bedroom_downlight_3
+      - light.bedroom_downlight_4
+      state: 'off'
+    light.living_room_downlights:
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      icon: mdi:lightbulb-group
+      friendly_name: Living Room Downlights
+      supported_features: 4
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      entity_id:
+      - light.living_room_downlight_1
+      - light.living_room_downlight_2
+      - light.living_room_downlight_3
+      - light.living_room_downlight_4
+      state: 'off'
+    light.hue_white_lamp_1:
+      effect_list:
+      - None
+      - candle
+      supported_color_modes:
+      - brightness
+      mode: normal
+      dynamics: none
+      friendly_name: Tripod lamp
+      supported_features: 44
+      state: 'off'
+    light.bedside_lights:
+      supported_color_modes:
+      - brightness
+      icon: mdi:lightbulb-group
+      friendly_name: Bedside Lights
+      supported_features: 44
+      effect_list:
+      - None
+      - candle
+      entity_id:
+      - light.right_of_bed
+      - light.left_of_bed
+      state: 'off'
+  icon: mdi:shaker-outline
+  metadata:
+    light.bedroom_downlights:
+      entity_only: true
+    light.living_room_downlights:
+      entity_only: true
+    light.hue_white_lamp_1:
+      entity_only: true
+    light.bedside_lights:
+      entity_only: true
+- id: '1682029533769'
+  name: Daytime Away
+  entities:
+    light.bedroom_downlights:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      color_mode: brightness
+      brightness: 252
+      effect: Plantgrowth
+      entity_id:
+      - light.bedroom_downlight_1
+      - light.bedroom_downlight_2
+      - light.bedroom_downlight_3
+      - light.bedroom_downlight_4
+      icon: mdi:lightbulb-group
+      friendly_name: Bedroom Downlights
+      supported_features: 4
+      state: 'on'
+    light.living_room_downlights:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      color_mode: brightness
+      brightness: 255
+      effect: Plantgrowth
+      entity_id:
+      - light.living_room_downlight_1
+      - light.living_room_downlight_2
+      - light.living_room_downlight_3
+      - light.living_room_downlight_4
+      icon: mdi:lightbulb-group
+      friendly_name: Living Room Downlights
+      supported_features: 4
+      state: 'on'
+    light.garage_door_tablet_screen:
+      supported_color_modes:
+      - brightness
+      type: browser_mod
+      browserID: 4dcd7f02-d3f1be51
+      friendly_name: Garage Door Tablet Screen
+      supported_features: 0
+      state: 'off'
+    light.living_room_tablet_screen:
+      supported_color_modes:
+      - brightness
+      type: browser_mod
+      browserID: f75b1620-b2b19519
+      friendly_name: Living Room Tablet Screen
+      supported_features: 0
+      state: 'off'
+    switch.garage_fairy_lights_socket_1:
+      device_class: outlet
+      friendly_name: Garage fairy lights Socket 1
+      state: 'off'
+  icon: mdi:weather-sunny
+  metadata:
+    light.bedroom_downlights:
+      entity_only: true
+    light.living_room_downlights:
+      entity_only: true
+    light.garage_door_tablet_screen:
+      entity_only: true
+    light.living_room_tablet_screen:
+      entity_only: true
+    switch.garage_fairy_lights_socket_1:
+      entity_only: true
+- id: '1682029766775'
+  name: Daytime Return
+  entities:
+    light.bedroom_downlights:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      color_mode: color_temp
+      brightness: 26
+      effect: Daylight
+      entity_id:
+      - light.bedroom_downlight_1
+      - light.bedroom_downlight_2
+      - light.bedroom_downlight_3
+      - light.bedroom_downlight_4
+      icon: mdi:lightbulb-group
+      friendly_name: Bedroom Downlights
+      supported_features: 4
+      color_temp_kelvin: 4201
+      color_temp: 238
+      hs_color:
+      - 26.743
+      - 31.347
+      rgb_color:
+      - 255
+      - 210
+      - 175
+      xy_color:
+      - 0.409
+      - 0.361
+      state: 'on'
+    light.living_room_downlights:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      color_mode: color_temp
+      brightness: 26
+      effect: Daylight
+      entity_id:
+      - light.living_room_downlight_1
+      - light.living_room_downlight_2
+      - light.living_room_downlight_3
+      - light.living_room_downlight_4
+      icon: mdi:lightbulb-group
+      friendly_name: Living Room Downlights
+      supported_features: 4
+      color_temp_kelvin: 4201
+      color_temp: 238
+      hs_color:
+      - 26.743
+      - 31.347
+      rgb_color:
+      - 255
+      - 210
+      - 175
+      xy_color:
+      - 0.409
+      - 0.361
+      state: 'on'
+    light.garage_door_tablet_screen:
+      supported_color_modes:
+      - brightness
+      type: browser_mod
+      browserID: 4dcd7f02-d3f1be51
+      friendly_name: Garage Door Tablet Screen
+      supported_features: 0
+      color_mode: brightness
+      brightness: 255
+      state: 'on'
+    light.living_room_tablet_screen:
+      supported_color_modes:
+      - brightness
+      type: browser_mod
+      browserID: f75b1620-b2b19519
+      friendly_name: Living Room Tablet Screen
+      supported_features: 0
+      color_mode: brightness
+      brightness: 255
+      state: 'on'
+    switch.garage_fairy_lights_socket_1:
+      device_class: outlet
+      friendly_name: Garage fairy lights Socket 1
+      state: 'off'
+  icon: mdi:weather-sunny
+  metadata:
+    light.bedroom_downlights:
+      entity_only: true
+    light.living_room_downlights:
+      entity_only: true
+    light.garage_door_tablet_screen:
+      entity_only: true
+    light.living_room_tablet_screen:
+      entity_only: true
+    switch.garage_fairy_lights_socket_1:
+      entity_only: true
+- id: '1682180951794'
+  name: Dim - daytime
+  entities:
+    light.bedroom_downlights:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      entity_id:
+      - light.bedroom_downlight_1
+      - light.bedroom_downlight_2
+      - light.bedroom_downlight_3
+      - light.bedroom_downlight_4
+      icon: mdi:lightbulb-group
+      friendly_name: Bedroom Downlights
+      supported_features: 4
+      color_mode: color_temp
+      brightness: 26
+      color_temp_kelvin: 4201
+      color_temp: 238
+      hs_color:
+      - 26.743
+      - 31.347
+      rgb_color:
+      - 255
+      - 210
+      - 175
+      xy_color:
+      - 0.409
+      - 0.361
+      effect: Daylight
+      state: 'on'
+    light.bedside_lights:
+      effect_list:
+      - None
+      - candle
+      supported_color_modes:
+      - brightness
+      entity_id:
+      - light.right_of_bed
+      - light.left_of_bed
+      icon: mdi:lightbulb-group
+      friendly_name: Bedside Lights
+      supported_features: 44
+      state: 'off'
+    switch.salt_lamp_socket_1:
+      device_class: outlet
+      friendly_name: Salt Lamp Socket 1
+      state: 'off'
+    light.living_room_downlights:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      entity_id:
+      - light.living_room_downlight_1
+      - light.living_room_downlight_2
+      - light.living_room_downlight_3
+      - light.living_room_downlight_4
+      icon: mdi:lightbulb-group
+      friendly_name: Living Room Downlights
+      supported_features: 4
+      color_mode: color_temp
+      brightness: 26
+      color_temp_kelvin: 4201
+      color_temp: 238
+      hs_color:
+      - 26.743
+      - 31.347
+      rgb_color:
+      - 255
+      - 210
+      - 175
+      xy_color:
+      - 0.409
+      - 0.361
+      effect: Daylight
+      state: 'on'
+    light.hue_white_lamp_1:
+      effect_list:
+      - None
+      - candle
+      supported_color_modes:
+      - brightness
+      mode: normal
+      dynamics: none
+      friendly_name: Tripod lamp
+      supported_features: 44
+      state: 'off'
+    light.kitchen:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      is_hue_group: true
+      hue_scenes: []
+      hue_type: room
+      lights:
+      - Hue lightstrip plus 1
+      dynamics: false
+      icon: mdi:lightbulb-group
+      friendly_name: Kitchen
+      supported_features: 40
+      color_mode: color_temp
+      brightness: 255
+      color_temp_kelvin: 6535
+      color_temp: 153
+      hs_color:
+      - 54.768
+      - 1.6
+      rgb_color:
+      - 255
+      - 254
+      - 250
+      xy_color:
+      - 0.326
+      - 0.333
+      state: 'on'
+  icon: mdi:lightbulb-on-10
+  metadata:
+    light.bedroom_downlights:
+      entity_only: true
+    light.bedside_lights:
+      entity_only: true
+    switch.salt_lamp_socket_1:
+      entity_only: true
+    light.living_room_downlights:
+      entity_only: true
+    light.hue_white_lamp_1:
+      entity_only: true
+    light.kitchen:
+      entity_only: true
+- id: '1682181031805'
+  name: Bright - Day
+  entities:
+    light.left_of_bed:
+      effect_list:
+      - None
+      - candle
+      supported_color_modes:
+      - brightness
+      mode: normal
+      dynamics: none
+      friendly_name: Left of bed
+      supported_features: 44
+      state: 'off'
+    light.right_of_bed:
+      effect_list:
+      - None
+      - candle
+      supported_color_modes:
+      - brightness
+      mode: normal
+      dynamics: none
+      friendly_name: Right of bed
+      supported_features: 44
+      state: 'off'
+    switch.salt_lamp_socket_1:
+      device_class: outlet
+      friendly_name: Salt Lamp Socket 1
+      state: 'off'
+    light.bedroom_downlights:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      entity_id:
+      - light.bedroom_downlight_1
+      - light.bedroom_downlight_2
+      - light.bedroom_downlight_3
+      - light.bedroom_downlight_4
+      icon: mdi:lightbulb-group
+      friendly_name: Bedroom Downlights
+      supported_features: 4
+      color_mode: color_temp
+      brightness: 255
+      color_temp_kelvin: 3636
+      color_temp: 275
+      hs_color:
+      - 27.048
+      - 41.896
+      rgb_color:
+      - 255
+      - 196
+      - 148
+      xy_color:
+      - 0.444
+      - 0.371
+      state: 'on'
+    light.living_room_downlights:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      entity_id:
+      - light.living_room_downlight_1
+      - light.living_room_downlight_2
+      - light.living_room_downlight_3
+      - light.living_room_downlight_4
+      icon: mdi:lightbulb-group
+      friendly_name: Living Room Downlights
+      supported_features: 4
+      color_mode: color_temp
+      brightness: 255
+      color_temp_kelvin: 3663
+      color_temp: 273
+      hs_color:
+      - 27.026
+      - 41.343
+      rgb_color:
+      - 255
+      - 197
+      - 149
+      xy_color:
+      - 0.442
+      - 0.371
+      state: 'on'
+    light.kitchen:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      is_hue_group: true
+      hue_scenes: []
+      hue_type: room
+      lights:
+      - Hue lightstrip plus 1
+      dynamics: false
+      icon: mdi:lightbulb-group
+      friendly_name: Kitchen
+      supported_features: 40
+      color_mode: color_temp
+      brightness: 255
+      color_temp_kelvin: 3731
+      color_temp: 268
+      hs_color:
+      - 26.973
+      - 39.973
+      rgb_color:
+      - 255
+      - 198
+      - 153
+      xy_color:
+      - 0.438
+      - 0.369
+      state: 'on'
+  metadata:
+    light.bedroom_downlights:
+      entity_only: true
+    light.living_room_downlights:
+      entity_only: true
+    light.kitchen:
+      entity_only: true
+  icon: mdi:light-flood-down
+- id: '1682201864413'
+  name: Plant Growth
+  entities:
+    light.bedroom_downlights:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      entity_id:
+      - light.bedroom_downlight_1
+      - light.bedroom_downlight_2
+      - light.bedroom_downlight_3
+      - light.bedroom_downlight_4
+      icon: mdi:lightbulb-group
+      friendly_name: Bedroom Downlights
+      supported_features: 4
+      color_mode: brightness
+      brightness: 255
+      effect: Plantgrowth
+      state: 'on'
+    light.living_room_downlights:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      entity_id:
+      - light.living_room_downlight_1
+      - light.living_room_downlight_2
+      - light.living_room_downlight_3
+      - light.living_room_downlight_4
+      icon: mdi:lightbulb-group
+      friendly_name: Living Room Downlights
+      supported_features: 4
+      color_mode: brightness
+      brightness: 255
+      effect: Plantgrowth
+      state: 'on'
+  icon: mdi:flower
+  metadata:
+    light.bedroom_downlights:
+      entity_only: true
+    light.living_room_downlights:
+      entity_only: true
+- id: '1682202080273'
+  name: Party
+  entities:
+    light.bedroom_downlights:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      entity_id:
+      - light.bedroom_downlight_1
+      - light.bedroom_downlight_2
+      - light.bedroom_downlight_3
+      - light.bedroom_downlight_4
+      icon: mdi:lightbulb-group
+      friendly_name: Bedroom Downlights
+      supported_features: 4
+      color_mode: brightness
+      brightness: 255
+      effect: Party
+      state: 'on'
+    light.living_room_downlights:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      entity_id:
+      - light.living_room_downlight_1
+      - light.living_room_downlight_2
+      - light.living_room_downlight_3
+      - light.living_room_downlight_4
+      icon: mdi:lightbulb-group
+      friendly_name: Living Room Downlights
+      supported_features: 4
+      color_mode: brightness
+      brightness: 255
+      effect: Party
+      state: 'on'
+    light.hue_white_lamp_1:
+      effect_list:
+      - None
+      - candle
+      supported_color_modes:
+      - brightness
+      mode: normal
+      dynamics: none
+      friendly_name: Tripod lamp
+      supported_features: 44
+      state: 'off'
+    light.hue_lightstrip_plus_1:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - None
+      - candle
+      - fire
+      supported_color_modes:
+      - color_temp
+      - xy
+      mode: normal
+      dynamics: none
+      friendly_name: Hue lightstrip plus 1
+      supported_features: 44
       color_mode: xy
       brightness: 255
       hs_color:
-        - 210.275
-        - 42.745
+      - 300.414
+      - 56.863
       rgb_color:
-        - 146
-        - 200
-        - 255
+      - 255
+      - 110
+      - 254
       xy_color:
-        - 0.222
-        - 0.259
-      state: "on"
-  icon: mdi:ceiling-light
+      - 0.373
+      - 0.19
+      effect: None
+      state: 'on'
+    light.bedside_lights:
+      effect_list:
+      - None
+      - candle
+      supported_color_modes:
+      - brightness
+      entity_id:
+      - light.right_of_bed
+      - light.left_of_bed
+      icon: mdi:lightbulb-group
+      friendly_name: Bedside Lights
+      supported_features: 44
+      state: 'off'
+  icon: mdi:party-popper
+  metadata:
+    light.bedroom_downlights:
+      entity_only: true
+    light.living_room_downlights:
+      entity_only: true
+    light.hue_white_lamp_1:
+      entity_only: true
+    light.hue_lightstrip_plus_1:
+      entity_only: true
+    light.bedside_lights:
+      entity_only: true
+- id: '1682202192990'
+  name: Romance
+  entities:
+    light.bedroom_downlights:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      entity_id:
+      - light.bedroom_downlight_1
+      - light.bedroom_downlight_2
+      - light.bedroom_downlight_3
+      - light.bedroom_downlight_4
+      icon: mdi:lightbulb-group
+      friendly_name: Bedroom Downlights
+      supported_features: 4
+      color_mode: brightness
+      brightness: 150
+      effect: Romance
+      state: 'on'
+    light.living_room_downlights:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      entity_id:
+      - light.living_room_downlight_1
+      - light.living_room_downlight_2
+      - light.living_room_downlight_3
+      - light.living_room_downlight_4
+      icon: mdi:lightbulb-group
+      friendly_name: Living Room Downlights
+      supported_features: 4
+      color_mode: brightness
+      brightness: 255
+      effect: Romance
+      state: 'on'
+    light.hue_white_lamp_1:
+      effect_list:
+      - None
+      - candle
+      supported_color_modes:
+      - brightness
+      mode: normal
+      dynamics: none
+      friendly_name: Tripod lamp
+      supported_features: 44
+      state: 'off'
+    light.hue_lightstrip_plus_1:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - None
+      - candle
+      - fire
+      supported_color_modes:
+      - color_temp
+      - xy
+      mode: normal
+      dynamics: none
+      friendly_name: Hue lightstrip plus 1
+      supported_features: 44
+      state: 'off'
+    light.bedside_lights:
+      effect_list:
+      - None
+      - candle
+      supported_color_modes:
+      - brightness
+      entity_id:
+      - light.right_of_bed
+      - light.left_of_bed
+      icon: mdi:lightbulb-group
+      friendly_name: Bedside Lights
+      supported_features: 44
+      state: 'off'
+  icon: mdi:cart-heart
+  metadata:
+    light.bedroom_downlights:
+      entity_only: true
+    light.living_room_downlights:
+      entity_only: true
+    light.hue_white_lamp_1:
+      entity_only: true
+    light.hue_lightstrip_plus_1:
+      entity_only: true
+    light.bedside_lights:
+      entity_only: true
+- id: '1689860957221'
+  name: Office Lights Off
+  entities:
+    light.hexsex:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 9009
+      min_mireds: 111
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - hs
+      rate_limit_total: 100
+      rate_limit_remaining: -15158
+      rate_limit_reset_seconds: -1689861017.27
+      rate_limit_reset: '1969-12-31T19:00:00'
+      rate_limit_on: 5
+      manufacturer: Govee
+      model: H6061
+      friendly_name: HexSex
+      supported_features: 19
+      state: 'off'
+    light.light_strip:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 9009
+      min_mireds: 111
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - hs
+      rate_limit_total: 100
+      rate_limit_remaining: -15158
+      rate_limit_reset_seconds: -1689861017.27
+      rate_limit_reset: '1969-12-31T19:00:00'
+      rate_limit_on: 5
+      manufacturer: Govee
+      model: H619Z
+      friendly_name: Light strip
+      supported_features: 19
+      state: 'off'
   metadata: {}
+- id: '1697799639261'
+  name: Morning Dim
+  entities:
+    light.bedroom_downlight_4:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Ocean
+      - Romance
+      - Sunset
+      - Party
+      - Fireplace
+      - Cozy
+      - Forest
+      - Pastel Colors
+      - Wake up
+      - Bedtime
+      - Warm White
+      - Daylight
+      - Cool white
+      - Night light
+      - Focus
+      - Relax
+      - True colors
+      - TV time
+      - Plantgrowth
+      - Spring
+      - Summer
+      - Fall
+      - Deepdive
+      - Jungle
+      - Mojito
+      - Club
+      - Christmas
+      - Halloween
+      - Candlelight
+      - Golden white
+      - Pulse
+      - Steampunk
+      - Rhythm
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      friendly_name: Bedroom Downlight 4
+      supported_features: 4
+      color_mode: rgbw
+      brightness: 26
+      hs_color:
+      - 13.882
+      - 100
+      rgb_color:
+      - 255
+      - 59
+      - 0
+      rgbw_color:
+      - 255
+      - 59
+      - 0
+      - 0
+      xy_color:
+      - 0.68
+      - 0.317
+      state: 'on'
+    light.hue_white_lamp_1:
+      effect_list:
+      - None
+      - candle
+      supported_color_modes:
+      - brightness
+      mode: normal
+      dynamics: none
+      friendly_name: Tripod lamp
+      supported_features: 44
+      color_mode: brightness
+      brightness: 50
+      effect: None
+      state: 'on'
+    light.kitchen:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      is_hue_group: true
+      hue_scenes: []
+      hue_type: room
+      lights:
+      - Hue lightstrip plus 1
+      dynamics: false
+      icon: mdi:lightbulb-group
+      friendly_name: Kitchen
+      supported_features: 40
+      color_mode: color_temp
+      brightness: 241
+      color_temp_kelvin: 2710
+      color_temp: 369
+      hs_color:
+      - 28.373
+      - 65.405
+      rgb_color:
+      - 255
+      - 167
+      - 88
+      xy_color:
+      - 0.524
+      - 0.388
+      state: 'on'
+    light.living_room_downlights:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      entity_id:
+      - light.living_room_downlight_1
+      - light.living_room_downlight_2
+      - light.living_room_downlight_3
+      - light.living_room_downlight_4
+      icon: mdi:lightbulb-group
+      friendly_name: Living Room Downlights
+      supported_features: 4
+      color_mode: color_temp
+      brightness: 48
+      color_temp_kelvin: 2202
+      color_temp: 454
+      hs_color:
+      - 29.79
+      - 84.553
+      rgb_color:
+      - 255
+      - 146
+      - 39
+      xy_color:
+      - 0.579
+      - 0.388
+      state: 'on'
+    switch.salt_lamp_socket_1:
+      device_class: outlet
+      friendly_name: Salt Lamp Socket 1
+      state: 'off'
+  icon: mdi:weather-sunset-up
+  metadata:
+    light.kitchen:
+      entity_only: true
+    light.living_room_downlights:
+      entity_only: true
+- id: '1698004012079'
+  name: Before times
+  entities:
+    light.bedroom_downlights:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      color_mode: color_temp
+      brightness: 26
+      color_temp_kelvin: 4201
+      color_temp: 238
+      hs_color:
+      - 26.743
+      - 31.347
+      rgb_color:
+      - 255
+      - 210
+      - 175
+      xy_color:
+      - 0.409
+      - 0.361
+      entity_id:
+      - light.bedroom_downlight_1
+      - light.bedroom_downlight_2
+      - light.bedroom_downlight_3
+      - light.bedroom_downlight_4
+      icon: mdi:lightbulb-group
+      friendly_name: Bedroom Downlights
+      supported_features: 4
+      state: 'on'
+    light.living_room_downlights:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Club
+      - Cool white
+      - Cozy
+      - Daylight
+      - Deepdive
+      - Fall
+      - Fireplace
+      - Focus
+      - Forest
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pastel Colors
+      - Plantgrowth
+      - Pulse
+      - Relax
+      - Rhythm
+      - Romance
+      - Spring
+      - Steampunk
+      - Summer
+      - Sunset
+      - TV time
+      - True colors
+      - Wake up
+      - Warm White
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      color_mode: color_temp
+      brightness: 26
+      color_temp_kelvin: 4201
+      color_temp: 238
+      hs_color:
+      - 26.743
+      - 31.347
+      rgb_color:
+      - 255
+      - 210
+      - 175
+      xy_color:
+      - 0.409
+      - 0.361
+      entity_id:
+      - light.living_room_downlight_1
+      - light.living_room_downlight_2
+      - light.living_room_downlight_3
+      - light.living_room_downlight_4
+      icon: mdi:lightbulb-group
+      friendly_name: Living Room Downlights
+      supported_features: 4
+      state: 'on'
+    light.kitchen:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: color_temp
+      brightness: 255
+      color_temp_kelvin: 6535
+      color_temp: 153
+      hs_color:
+      - 54.768
+      - 1.6
+      rgb_color:
+      - 255
+      - 254
+      - 250
+      xy_color:
+      - 0.326
+      - 0.333
+      is_hue_group: true
+      hue_scenes: []
+      hue_type: room
+      lights:
+      - Hue lightstrip plus 1
+      dynamics: false
+      icon: mdi:lightbulb-group
+      friendly_name: Kitchen
+      supported_features: 40
+      state: 'on'
+  metadata:
+    light.bedroom_downlights:
+      entity_only: true
+    light.living_room_downlights:
+      entity_only: true

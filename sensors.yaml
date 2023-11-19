@@ -1,19 +1,39 @@
-- platform: miflora
-  mac:
-  name: pothos
-  force_update: true
-  scan_interval: 08:00
-  median: 3
-  go_unavailable_timeout: 43200
-  monitored_conditions:
-    - battery
+- platform: template
+  sensors:
+    set_thermostat_temp:
+      friendly_name: "Temp Thermostat Set To"
+      unit_of_measurement: "°F"
+      value_template: "{{ state_attr('climate.thermostat', 'temperature') }}"
+    my_thermostat_temperature:
+      friendly_name: "My Thermostat Tempurature"
+      unit_of_measurement: "°F"
+      value_template: "{{ state_attr('climate.thermostat', 'current_temperature') }}"
+    outside_temperature:
+      friendly_name: "Outside Temperature"
+      unit_of_measurement: "°F"
+      value_template: "{{ state_attr('weather.home', 'temperature') }}"
+    forecast_low_today:
+      friendly_name: "Forecast Low Today"
+      unit_of_measurement: "°F"
+      value_template: "{{ state_attr('weather.home', 'forecast')[0]['templow'] }}"
 
-- platform: miflora
-  mac:
-  name: caladium
-  force_update: true
-  scan_interval: 08:00
-  median: 3
-  go_unavailable_timeout: 43200
-  monitored_conditions:
-    - battery
+- platform: time_date
+  display_options:
+    - "time"
+    - "date"
+    - "date_time"
+    - "date_time_utc"
+    - "date_time_iso"
+    - "time_date"
+    - "time_utc"
+    - "beat"
+
+- platform: rest
+  resource: https://api.ipgeolocation.io/astronomy?lat=38.197930&long=-84.839240&apiKey=d03d01013a9b4423aee9509d84c182ad
+  name: ip_geo_location
+  scan_interval: 300
+  value_template: "OK"
+  json_attributes:
+    - moonrise
+    - moonset
+    - moon_altitude

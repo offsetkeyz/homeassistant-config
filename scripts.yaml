@@ -1,0 +1,272 @@
+ally_work_tomorrow:
+  alias: Ally Work Tomorrow
+  use_blueprint:
+    path: homeassistant/confirmable_notification.yaml
+    input:
+      notify_device: 7ce157d8047110f75d72e50667fc3e92
+      message:
+        This will set an alarm for 5:50 am if your phone is still on the charger.
+        You can disable this alarm by clicking "Disable".
+      dismiss_text: Disable Alarm
+      confirm_action:
+        - service: input_boolean.turn_on
+          data: {}
+          target:
+            entity_id: input_boolean.ally_work_tomorrow
+      dismiss_action:
+        - service: input_boolean.turn_off
+          data: {}
+          target:
+            entity_id: input_boolean.ally_work_tomorrow
+      confirm_text: Yes I have work!
+      title: Work Tomorrow?
+  mode: single
+  icon: mdi:home-silo
+morning_lights_on:
+  alias: Morning Lights On
+  sequence:
+    - service: light.turn_on
+      data:
+        color_temp: 493
+        brightness_pct: 1
+      target:
+        entity_id: light.bedroom_downlight_4
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 30
+        milliseconds: 0
+    - service: light.turn_on
+      data:
+        transition: 60
+        color_temp: 493
+        brightness_pct: 100
+      target:
+        area_id:
+          - kitchen
+        device_id: 9839ebec70e26efb1b14f2ab735328d0
+    - service: light.turn_on
+      data:
+        color_temp: 493
+        brightness_pct: 10
+      target:
+        entity_id: light.bedroom_downlight_3
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 30
+        milliseconds: 0
+    - service: light.turn_on
+      data:
+        color_temp: 493
+        brightness_pct: 3
+      target:
+        entity_id: light.bedroom_downlight_2
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 30
+        milliseconds: 0
+    - service: light.turn_on
+      data:
+        color_temp: 493
+        brightness_pct: 2
+      target:
+        entity_id: light.bedroom_downlight_1
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 30
+        milliseconds: 0
+    - service: light.turn_on
+      data:
+        color_temp: 493
+        brightness_pct: 20
+      target:
+        entity_id: light.bedroom_downlights
+    - delay:
+        hours: 0
+        minutes: 1
+        seconds: 0
+        milliseconds: 0
+    - service: light.turn_on
+      data:
+        transition: 60
+        color_temp: 493
+        brightness_pct: 96
+      target:
+        device_id:
+          - 84501402f9bc793f06f939ba787d3151
+          - 0568310e4b7102e59b1c5bab58bd449d
+    - type: turn_on
+      device_id: f8cd28e8543c47495a05a9ad6d922c9a
+      entity_id: 031cc76c11e99da30763bb218d4ed366
+      domain: switch
+    - service: light.turn_on
+      data:
+        color_temp: 493
+        brightness_pct: 77
+      target:
+        entity_id: light.living_room_downlights
+  mode: single
+morning_temp:
+  sequence:
+    - choose:
+        - conditions:
+            - condition: device
+              device_id: c187ca77d3a5e76b3a9e4550c9af4405
+              domain: climate
+              entity_id: climate.thermostat
+              type: is_hvac_mode
+              hvac_mode: heat
+          sequence:
+            - service: climate.set_temperature
+              data:
+                entity_id: climate.thermostat
+                temperature: "{{ states('sensor.my_thermostat_temperature') | float }}"
+            - repeat:
+                while:
+                  - condition: template
+                    value_template:
+                      "{{ states('sensor.set_thermostat_temp') | float < states('input_number.winter_day_temperature')
+                      | float }}"
+                sequence:
+                  - service: climate.set_temperature
+                    data:
+                      entity_id: climate.thermostat
+                      temperature:
+                        "{{ states('sensor.set_thermostat_temp') | float + 1
+                        }}"
+                  - delay:
+                      hours: 1
+                      minutes: 0
+                      seconds: 0
+                      milliseconds: 0
+      default:
+        - service: climate.set_temperature
+          data:
+            entity_id: climate.thermostat
+            temperature: "{{ states('input_number.summer_day_temperature') }}"
+  alias: Set Morning Temperature
+  mode: single
+  icon: mdi:weather-sunset-up
+evening_temp:
+  sequence:
+    - choose:
+        - conditions:
+            - condition: numeric_state
+              entity_id: sensor.forecast_low_today
+              below: 58
+          sequence:
+            - if:
+                - condition: numeric_state
+                  entity_id: sensor.forecast_low_today
+                  below: 38
+              then:
+                - service: notify.colin_and_allys_phones
+                  data:
+                    data:
+                      push:
+                        interruption-level: time-sensitive
+                    message: Make sure the hose is detached from the house.
+                    title: Freeze Warning!
+            - service: climate.set_hvac_mode
+              data:
+                hvac_mode: heat
+              entity_id: climate.thermostat
+            - service: climate.set_temperature
+              data:
+                entity_id: climate.thermostat
+                temperature:
+                  "{{ states('input_number.winter_sleep_temperature') | float
+                  }}"
+        - conditions:
+            - condition: numeric_state
+              entity_id: sensor.forecast_low_today
+              above: 57
+          sequence:
+            - service: climate.set_hvac_mode
+              data:
+                hvac_mode: cool
+              entity_id: climate.thermostat
+            - service: climate.set_temperature
+              data:
+                temperature: "{{ states('sensor.my_thermostat_temperature') | float }}"
+              target:
+                entity_id: climate.thermostat
+            - repeat:
+                while:
+                  - condition: template
+                    value_template:
+                      "{{ states('sensor.set_thermostat_temp') | float > states('input_number.summer_sleep_temperature')
+                      | float }}"
+                sequence:
+                  - service: climate.set_temperature
+                    data:
+                      entity_id: climate.thermostat
+                      temperature:
+                        "{{ states('sensor.set_thermostat_temp') | float - 1
+                        }}"
+                  - delay:
+                      hours: 1
+                      minutes: 0
+                      seconds: 0
+                      milliseconds: 0
+  alias: Set Evening Temperature
+  mode: single
+temperature_normalizer:
+  alias: Temperature Normalizer
+  variables:
+    thermostat_set_to: "{{ states('sensor.set_thermostat_temp') | float }}"
+    thermostat_temp: "{{ states('sensor.my_thermostat_temperature') | float }}"
+    summer_day_temp: "{{ states('input_number.summer_day_temperature') | float }}"
+    summer_night_temp:
+      "{{ states('input_number.summer_sleep_temperature') | float
+      }}"
+    winter_day_temp: "{{ states('input_number.winter_day_temperature') | float }}"
+    winter_night_temp:
+      "{{ states('input_number.winter_sleep_temperature') | float
+      }}"
+  sequence:
+    - if:
+        - condition: template
+          value_template:
+            "{{ states('sensor.set_thermostat_temp') | float + 4 < states('sensor.my_thermostat_temperature')
+            | float }}"
+      then:
+        - service: climate.set_hvac_mode
+          data:
+            hvac_mode: cool
+          target:
+            entity_id: climate.thermostat
+        - service: climate.set_temperature
+          data:
+            temperature:
+              "{{ states('input_number.summer_day_temperature') | float +
+              2 }}"
+          target:
+            entity_id: climate.thermostat
+      else:
+        - if:
+            - condition: state
+              entity_id: climate.thermostat
+              state: cool
+            - condition: template
+              value_template:
+                "{{ states('sensor.set_thermostat_temp') | float - 4 > states('sensor.my_thermostat_temperature')
+                | float }}"
+          then:
+            - service: climate.set_hvac_mode
+              data:
+                hvac_mode: heat
+              target:
+                entity_id: climate.thermostat
+            - service: climate.set_temperature
+              data:
+                temperature:
+                  "{{ states('input_number.summer_day_temperature') | float
+                  - 3 }}"
+              target:
+                entity_id: climate.thermostat
+  mode: single
+  icon: mdi:temperature-fahrenheit
